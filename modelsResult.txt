@@ -1,0 +1,405 @@
+type Calendar {
+  ukey: Int!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  start_at: BigInt
+  stop_at: BigInt
+  no_work_shift: no_work_shift[]!
+  resource: resource[]!
+  work_shift: work_shift[]!
+}
+
+type Company {
+  ukey: Int!
+  name: String!
+  company_group_ukey: Int!
+  country: String
+  state: String
+  city: String
+  zip_code: String
+  street: String
+  number: String
+  complement: String
+  email: String
+  name_contact: String
+  register_type: String
+  register_number: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  currency_used: String
+  currency_ukey: Int
+  company_group: company_group!
+  currency: currency
+  sector: sector[]!
+  users: users[]!
+}
+
+type CompanyGroup {
+  ukey: Int!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  company: company[]!
+}
+
+type Currency {
+  ukey: Int!
+  name: String
+  code: String
+  symbol: String
+  company: company[]!
+  monitored_resource: monitored_resource[]!
+}
+
+type HourBi {
+  ukey: Int!
+  resource_name: String
+  datetime_hour: Decimal
+  shift_name: String
+  availability_goal: Decimal
+  performance_goal: Decimal
+  quality_goal: Decimal
+  energy_goal: Decimal
+  oee_goal: Decimal
+  o3e_goal: Decimal
+  availability_realized: Decimal
+  energy_realized: Decimal
+  o3e_realized: Decimal
+  oee_realized: Decimal
+  performance_realized: Decimal
+  quality_realized: Decimal
+  teep_goal: Decimal
+  teep_realized: Decimal
+  utilization_goal: Decimal
+  utilization_realized: Decimal
+  week_year: Decimal
+  datetime_data: DateTime
+  resource_ukey: Int
+  need_to_create: Boolean
+  need_to_update: Boolean
+  is_deleted: Boolean
+  ole_goal: Decimal
+  working_goal: Decimal
+  ole_realized: Decimal
+  working_realized: Decimal
+  resource: resource
+}
+
+type MaintenceBi {
+  ukey: Int!
+  shift_name: String
+  shift_duration: Decimal
+  stop_number: Decimal
+  stop_duration: Decimal
+  mttr: Decimal
+  mtbf: Decimal
+  year: Decimal
+  half: Decimal
+  quarter: Decimal
+  month: Decimal
+  week: Decimal
+  shift_start: String
+  date: DateTime
+  status_send: Decimal
+  resource_ukey: Int
+  resource: resource
+}
+
+type MonitoredResource {
+  ukey: Int!
+  resource_ukey: Int!
+  calendar_ukey: String!
+  id_hardware_monitored: String!
+  name_machine: String!
+  status: String!
+  standard_speed: Decimal!
+  standard_energy: Decimal!
+  standard_availability: Decimal!
+  goal_quality: Decimal!
+  goal_energy: Decimal!
+  goal_oee: Decimal!
+  goal_o3e: Decimal!
+  time_setup: Decimal!
+  created_at: DateTime!
+  updated_at: DateTime!
+  hourly_cost_value: Int
+  goal_ole: Decimal!
+  goal_labor: Decimal!
+  currency: currency
+  resource: resource!
+}
+
+type NoWorkShift {
+  ukey: Int!
+  calendar_ukey: Int
+  shift_ukey: Int
+  start_at: BigInt
+  stop_at: BigInt
+  calendar: calendar
+  shift: shift
+}
+
+type Operations {
+  ukey: Int!
+  code: String
+  description: String
+}
+
+type Parameters {
+  ukey: Int!
+  type: String!
+  key: String!
+  value: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type PreventMaintence {
+  ukey: Int!
+  ukey_justifyreason: Int!
+  stop_reason_description: String
+  status: Int
+  start_at: BigInt!
+  stop_at: BigInt!
+  resource_ukey: Int!
+  need_to_create: Boolean
+  need_to_update: Boolean
+  need_to_delete: Boolean
+  is_deleted: Boolean!
+  resource: resource!
+  reason: reason!
+  resource_stop: resource_stop[]!
+}
+
+type ProductionOrder {
+  ukey: Int!
+  work_center_ukey: Int!
+  origin: String!
+  status_order: String!
+  product: String!
+  planned_quantity: Decimal!
+  realized_quantity: Decimal
+  open_quantity: Decimal
+  planned_quantity_refuse: Decimal!
+  real_quantity_refuse: Decimal
+  standard_speed: Decimal
+  standard_availability: Decimal
+  standard_energy: Decimal
+  goal_quality: Decimal!
+  goal_energy: Decimal!
+  goal_o3e: Decimal!
+  time_setup: Decimal!
+  goal_oee: Decimal!
+  planned_start: BigInt!
+  real_start: BigInt
+  planned_end: BigInt!
+  real_end: BigInt
+  last_annotation: BigInt
+  type_refuse: Int
+  resource_ukey: Int
+  need_to_create: Boolean
+  need_to_update: Boolean
+  is_deleted: Boolean
+  need_to_delete: Boolean
+  created_at: DateTime
+  updated_at: DateTime
+  goal_speed: Decimal!
+  goal_availability: Decimal!
+  code: String!
+  unity_quantity_ukey: Int
+  unity_refuse_ukey: Int
+  operation_ukey: Int
+  goal_performance: Decimal
+  refuse_conversion: String
+  nonconforming_quantity: Decimal
+  column14: String
+  datetime_planned_end: DateTime!
+  datetime_planned_start: DateTime!
+  goal_ole: Decimal
+  goal_working: Decimal
+  resource: resource
+  work_center: work_center!
+  production_order_annotation: production_order_annotation[]!
+}
+
+type ProductionOrderAnnotation {
+  ukey: Int!
+  ukey_production_order: Int!
+  ukey_resource: Int!
+  ukey_shift: Int
+  quantity: Decimal!
+  quantity_refuse: Decimal!
+  origin: String
+  status_annotation: Int!
+  created_at: BigInt
+  need_to_create_on_cloud: Boolean!
+  production_order: production_order!
+  resource: resource!
+  shift: shift
+}
+
+type Reason {
+  ukey: Int!
+  reason: String!
+  is_produtive: Boolean!
+  is_utilization: Boolean!
+  is_preventive: Boolean!
+  is_deleted: Boolean!
+  login_deleted: String!
+  is_simulation: Boolean!
+  type_reason: String
+  prevent_maintence: prevent_maintence[]!
+  resource_stop: resource_stop[]!
+}
+
+type Resource {
+  ukey: Int!
+  resource_type_ukey: Int!
+  calendar_ukey: Int!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  hourly_cost_value: Int
+  status: String
+  logical_id_monitored: String
+  id_monitor: Int
+  calendar: calendar!
+  resource_type: resource_type!
+  hour_bi: hour_bi[]!
+  maintence_bi: maintence_bi[]!
+  monitored_resource: monitored_resource[]!
+  prevent_maintence: prevent_maintence[]!
+  production_order: production_order[]!
+  production_order_annotation: production_order_annotation[]!
+  resource_stop: resource_stop[]!
+  shift_bi: shift_bi[]!
+  work_center: work_center[]!
+}
+
+type ResourceStop {
+  ukey: Int!
+  ukey_prevent: Int
+  justify_reason_ukey: Int
+  produtive_analized: Boolean!
+  shift: String!
+  current_date: String
+  created_at: DateTime!
+  login_update_cloud: String
+  resource_ukey: Int
+  start_at: BigInt!
+  stop_at: BigInt!
+  status_create: Int
+  need_to_create: Boolean
+  need_to_update: Boolean
+  reason: reason
+  resource: resource
+  updated_at: DateTime!
+  updated_by: String!
+  prevent_maintence: prevent_maintence
+}
+
+type ResourceType {
+  ukey: Int!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  resource: resource[]!
+}
+
+type Sector {
+  ukey: Int!
+  code: String!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  ukey_company: Int
+  company: company
+  work_center: work_center[]!
+}
+
+type Shift {
+  ukey: Int!
+  shift_name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  no_work_shift: no_work_shift[]!
+  production_order_annotation: production_order_annotation[]!
+  work_shift: work_shift[]!
+}
+
+type ShiftBi {
+  ukey: Int!
+  resource_name: String
+  datetime_hour: Int
+  shift_name: String
+  availability_goal: Decimal
+  performance_goal: Decimal
+  quality_goal: Decimal
+  energy_goal: Decimal
+  oee_goal: Decimal
+  o3e_goal: Decimal
+  availability_realized: Decimal
+  energy_realized: Decimal
+  oee_realized: Decimal
+  performance_realized: Decimal
+  quality_realized: Decimal
+  teep_goal: Decimal
+  teep_realized: Decimal
+  utilization_goal: Decimal
+  utilization_realized: Decimal
+  week_year: Int
+  datetime_data: DateTime
+  ukey_edge: String
+  o3e_realized: Decimal
+  resource_ukey: Int
+  need_to_create: Boolean
+  need_to_update: Boolean
+  is_deleted: Boolean
+  ole_goal: Decimal
+  working_goal: Decimal
+  ole_realized: Decimal
+  working_realized: Decimal
+  resource: resource
+}
+
+type Units {
+  ukey: Int!
+  initials: String
+  description: String
+}
+
+type Users {
+  ukey: Int!
+  name: String!
+  email: String!
+  login: String!
+  password: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  company_ukey: Int!
+  company: company!
+}
+
+type WorkCenter {
+  ukey: Int!
+  sector_ukey: Int!
+  name: String!
+  resource_ukey: Int!
+  calendar_ukey: Int
+  resource: resource!
+  sector: sector!
+  production_order: production_order[]!
+}
+
+type WorkShift {
+  ukey: Int!
+  calendar_ukey: Int
+  shift_ukey: Int
+  total: Int
+  day_week: Int
+  start: Int
+  end: Int
+  calendar: calendar
+  shift: shift
+}
