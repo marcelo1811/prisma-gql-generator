@@ -1,12 +1,13 @@
 const fs = require('fs');
 
-const fileToRead = 'gti.schema'
+const fileToRead = 'prisma.schema';
+const outputFileName = 'result.gql';
 
 let schema
 try {
-  schema = fs.readFileSync(`${__dirname}/${fileToRead}`, 'utf-8')
+  schema = fs.readFileSync(`${__dirname}/${fileToRead}`, 'utf-8');
 } catch (err) {
-  console.log(err)
+  console.log(err);
 }
 
 let result = schema;
@@ -21,18 +22,17 @@ function transformLowerSneakCaseToUpperCamelCase(string) {
   const sneakCaseRegex = /(_\w)/gm;
   const capitalized = string.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
   return capitalized.replace(sneakCaseRegex, (match, capture) => {
-    return match.replace(capture, capture.toUpperCase().replace('_', ''))
+    return match.replace(capture, capture.toUpperCase().replace('_', ''));
   });
 }
 
 const modelNameRegex = /\s(\w*)\s{/gm;
 result = result.replace(modelNameRegex, (match, capture) => {
-  return transformLowerSneakCaseToUpperCamelCase(match)
+  return transformLowerSneakCaseToUpperCamelCase(match);
 })
 
 const modelLineRegex = /model(.|\s)*?}/gm;
 let models = result.match(modelLineRegex);
-console.log(models)
 
 models = models.map((model) => {
   let newModel = model.replace('model', 'type');
@@ -42,7 +42,7 @@ models = models.map((model) => {
     const fields = line.trim().split(/\s+/g);
 
     fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
-    const joined = '  '.concat(fields.join(': '))
+    const joined = '  '.concat(fields.join(': '));
     return joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
   })
   return newModel.join('\n');
@@ -50,7 +50,7 @@ models = models.map((model) => {
 
 result = models.join('\n\n');
 
-fs.writeFileSync('modelsResult.gql', result);
+fs.writeFileSync(outputFileName, result);
 
 
 
