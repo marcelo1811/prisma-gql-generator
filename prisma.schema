@@ -8,156 +8,156 @@ datasource db {
 }
 
 model bi_hour {
-  ukey                  Int      @id @default(autoincrement())
-  resource_name         String
-  shift_name            String
-  goal_availability     Float
-  goal_energy           Float
-  goal_o3e              Float
-  goal_oee              Float
-  goal_ole              Float
-  goal_performance      Float
-  goal_quality          Float
-  goal_teep             Float
-  goal_utilization      Float
-  goal_working          Float
-  realized_availability Float
-  realized_energy       Float
-  realized_o3e          Float
-  realized_oee          Float
-  realized_ole          Float
-  realized_performance  Float
-  realized_quality      Float
-  realized_teep         Float
-  realized_utilization  Float
-  realized_working      Float
-  hour                  Int
-  week                  Int
+  ukey                  Int       @id @default(autoincrement())
+  resource_name         String?
+  shift_name            String?
+  goal_availability     Float?
+  goal_energy           Float?
+  goal_o3e              Float?
+  goal_oee              Float?
+  goal_ole              Float?
+  goal_performance      Float?
+  goal_quality          Float?
+  goal_teep             Float?
+  goal_utilization      Float?
+  goal_working          Float?
+  realized_availability Float?
+  realized_energy       Float?
+  realized_o3e          Float?
+  realized_oee          Float?
+  realized_ole          Float?
+  realized_performance  Float?
+  realized_quality      Float?
+  realized_teep         Float?
+  realized_utilization  Float?
+  realized_working      Float?
+  hour                  Int?
+  week                  Int?
   sync_ukey             Int?
   resource_ukey         Int
-  resource              resource @relation(fields: [resource_ukey], references: [ukey])
+  resource              resource  @relation(fields: [resource_ukey], references: [ukey])
   shift_ukey            Int
-  shift                 shift    @relation(fields: [shift_ukey], references: [ukey])
-  created_at            DateTime @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String   @default("SISTEMA")
-  need_create           Boolean  @default(false)
-  need_update           Boolean  @default(false)
-  need_delete           Boolean  @default(false)
+  shift                 shift     @relation(fields: [shift_ukey], references: [ukey])
+  created_at            DateTime? @default(now()) @db.Timestamp(0)
+  updated_at            DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?   @default("SISTEMA")
+  need_create           Boolean?  @default(false)
+  need_update           Boolean?  @default(false)
+  need_delete           Boolean?  @default(false)
 }
 
 model bi_maintence {
   ukey                  Int      @id @default(autoincrement())
-  resource_name         String
-  shift_name            String
-  goal_availability     Float
-  goal_energy           Float
-  goal_o3e              Float
-  goal_oee              Float
-  goal_ole              Float
-  goal_performance      Float
-  goal_quality          Float
-  goal_teep             Float
-  goal_utilization      Float
-  goal_working          Float
-  realized_availability Float
-  realized_energy       Float
-  realized_o3e          Float
-  realized_oee          Float
-  realized_ole          Float
-  realized_performance  Float
-  realized_quality      Float
-  realized_teep         Float
-  realized_utilization  Float
-  realized_working      Float
-  hour                  Int
-  week                  Int
+  resource_name         String?
+  shift_name            String?
+  goal_availability     Float?
+  goal_energy           Float?
+  goal_o3e              Float?
+  goal_oee              Float?
+  goal_ole              Float?
+  goal_performance      Float?
+  goal_quality          Float?
+  goal_teep             Float?
+  goal_utilization      Float?
+  goal_working          Float?
+  realized_availability Float?
+  realized_energy       Float?
+  realized_o3e          Float?
+  realized_oee          Float?
+  realized_ole          Float?
+  realized_performance  Float?
+  realized_quality      Float?
+  realized_teep         Float?
+  realized_utilization  Float?
+  realized_working      Float?
+  hour                  Int?
+  week                  Int?
   sync_ukey             Int?
   resource_ukey         Int
   resource              resource @relation(fields: [resource_ukey], references: [ukey])
   shift_ukey            Int
   shift                 shift    @relation(fields: [shift_ukey], references: [ukey])
-  created_at            DateTime @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String   @default("SISTEMA")
-  need_create           Boolean  @default(false)
-  need_update           Boolean  @default(false)
-  need_delete           Boolean  @default(false)
+  created_at            DateTime @default(now()) @db.Timestamp(0)
+  updated_at            DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?  @default("SISTEMA")
+  need_create           Boolean? @default(false)
+  need_update           Boolean? @default(false)
+  need_delete           Boolean? @default(false)
+}
+
+model bi_shift {
+  ukey                  Int      @id @default(autoincrement())
+  resource_name         String?
+  shift_name            String?
+  goal_availability     Float?
+  goal_energy           Float?
+  goal_o3e              Float?
+  goal_oee              Float?
+  goal_ole              Float?
+  goal_performance      Float?
+  goal_quality          Float?
+  goal_teep             Float?
+  goal_utilization      Float?
+  goal_working          Float?
+  realized_availability Float?
+  realized_energy       Float?
+  realized_o3e          Float?
+  realized_oee          Float?
+  realized_ole          Float?
+  realized_performance  Float?
+  realized_quality      Float?
+  realized_teep         Float?
+  realized_utilization  Float?
+  realized_working      Float?
+  hour                  Int?
+  week                  Int?
+  sync_ukey             Int?
+  resource_ukey         Int
+  resource              resource @relation(fields: [resource_ukey], references: [ukey])
+  shift_ukey            Int
+  shift                 shift    @relation(fields: [shift_ukey], references: [ukey])
+  created_at            DateTime @default(now()) @db.Timestamp(0)
+  updated_at            DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?  @default("SISTEMA")
+  need_create           Boolean? @default(false)
+  need_update           Boolean? @default(false)
+  need_delete           Boolean? @default(false)
 }
 
 model calendar {
   ukey               Int                  @id @default(autoincrement())
-  name               String
-  start_at           DateTime             @db.Timestamptz(0)
-  stop_at            DateTime             @db.Timestamptz(0)
+  name               String?
+  start_at           DateTime?            @db.Date
+  stop_at            DateTime?            @db.Date
   sync_ukey          Int?
   no_work_shift      no_work_shift[]
   resource           resource[]
   work_center        work_center[]
   work_shift         work_shift[]
   monitored_resource monitored_resource[]
-  created_at         DateTime             @default(now()) @db.Timestamptz(0)
-  updated_at         DateTime             @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by         String               @default("SISTEMA")
-  need_create        Boolean              @default(false)
-  need_update        Boolean              @default(false)
-  need_delete        Boolean              @default(false)
-}
-
-model bi_shift {
-  ukey                  Int      @id @default(autoincrement())
-  resource_name         String
-  shift_name            String
-  goal_availability     Float
-  goal_energy           Float
-  goal_o3e              Float
-  goal_oee              Float
-  goal_ole              Float
-  goal_performance      Float
-  goal_quality          Float
-  goal_teep             Float
-  goal_utilization      Float
-  goal_working          Float
-  realized_availability Float
-  realized_energy       Float
-  realized_o3e          Float
-  realized_oee          Float
-  realized_ole          Float
-  realized_performance  Float
-  realized_quality      Float
-  realized_teep         Float
-  realized_utilization  Float
-  realized_working      Float
-  hour                  Int
-  week                  Int
-  sync_ukey             Int?
-  resource_ukey         Int
-  resource              resource @relation(fields: [resource_ukey], references: [ukey])
-  shift_ukey            Int
-  shift                 shift    @relation(fields: [shift_ukey], references: [ukey])
-  created_at            DateTime @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String   @default("SISTEMA")
-  need_create           Boolean  @default(false)
-  need_update           Boolean  @default(false)
-  need_delete           Boolean  @default(false)
+  created_at         DateTime?            @default(now()) @db.Timestamp(0)
+  updated_at         DateTime?            @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by         String?              @default("SISTEMA")
+  need_create        Boolean?             @default(false)
+  need_update        Boolean?             @default(false)
+  need_delete        Boolean?             @default(false)
 }
 
 model company {
   ukey               Int           @id @default(autoincrement())
-  name               String
-  country            String
-  state              String
-  city               String
-  zip_code           String
-  street             String
-  number             String
-  complement         String
-  email              String
-  name_contact       String
-  register_type      String
-  register_number    String
-  timezone           Int
+  name               String?
+  country            String?
+  state              String?
+  city               String?
+  zip_code           String?
+  street             String?
+  number             String?
+  complement         String?
+  email              String?
+  name_contact       String?
+  register_type      Int?
+  register_number    Int?
+  timezone           Int?
   sync_ukey          Int?
   company_group_ukey Int
   company_group      company_group @relation(fields: [company_group_ukey], references: [ukey])
@@ -165,171 +165,171 @@ model company {
   currency           currency      @relation(fields: [currency_ukey], references: [ukey])
   sector             sector[]
   users              users[]
-  created_at         DateTime      @default(now()) @db.Timestamptz(0)
-  updated_at         DateTime      @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by         String        @default("SISTEMA")
-  need_create        Boolean       @default(false)
-  need_update        Boolean       @default(false)
-  need_delete        Boolean       @default(false)
+  created_at         DateTime?     @default(now()) @db.Timestamp(0)
+  updated_at         DateTime?     @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by         String?       @default("SISTEMA")
+  need_create        Boolean?      @default(false)
+  need_update        Boolean?      @default(false)
+  need_delete        Boolean?      @default(false)
 }
 
 model company_group {
   ukey        Int       @id @default(autoincrement())
-  name        String
+  name        String?
   sync_ukey   Int?
   company     company[]
-  created_at  DateTime  @default(now()) @db.Timestamptz(0)
-  updated_at  DateTime  @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by  String    @default("SISTEMA")
-  need_create Boolean   @default(false)
-  need_update Boolean   @default(false)
-  need_delete Boolean   @default(false)
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  updated_at  DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by  String?   @default("SISTEMA")
+  need_create Boolean?  @default(false)
+  need_update Boolean?  @default(false)
+  need_delete Boolean?  @default(false)
 }
 
 model currency {
-  ukey               Int                  @id
-  name               String
-  code               String
-  symbol             String
+  ukey               Int                  @id @default(autoincrement())
+  name               String?
+  code               String?
+  symbol             String?
   sync_ukey          Int?
   company            company[]
   monitored_resource monitored_resource[]
-  created_at         DateTime             @default(now()) @db.Timestamptz(0)
-  updated_at         DateTime             @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by         String               @default("SISTEMA")
-  need_create        Boolean              @default(false)
-  need_update        Boolean              @default(false)
-  need_delete        Boolean              @default(false)
+  created_at         DateTime?            @default(now()) @db.Timestamp(0)
+  updated_at         DateTime?            @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by         String?              @default("SISTEMA")
+  need_create        Boolean?             @default(false)
+  need_update        Boolean?             @default(false)
+  need_delete        Boolean?             @default(false)
 }
 
 model monitored_resource {
-  ukey                  Int      @id @default(autoincrement())
-  id_hardware_monitored String
-  name_machine          String
-  status                Int
-  goal_availability     Float
-  goal_energy           Float
-  goal_o3e              Float
-  goal_oee              Float
-  goal_ole              Float
-  goal_performance      Float
-  goal_quality          Float
-  goal_teep             Float
-  goal_utilization      Float
-  goal_working          Float
-  standard_availability Float
-  standard_energy       Float
-  standard_speed        Float
-  time_setup            Float
+  ukey                  Int       @id @default(autoincrement())
+  id_hardware_monitored String?
+  name_machine          String?
+  status                Int?
+  goal_availability     Float?
+  goal_energy           Float?
+  goal_o3e              Float?
+  goal_oee              Float?
+  goal_ole              Float?
+  goal_performance      Float?
+  goal_quality          Float?
+  goal_teep             Float?
+  goal_utilization      Float?
+  goal_working          Float?
+  standard_availability Float?
+  standard_energy       Float?
+  standard_speed        Float?
+  time_setup            Float?
   sync_ukey             Int?
   currency_ukey         Int
-  currency              currency @relation(fields: [currency_ukey], references: [ukey])
+  currency              currency  @relation(fields: [currency_ukey], references: [ukey])
   calendar_ukey         Int
-  calendar              calendar @relation(fields: [calendar_ukey], references: [ukey])
+  calendar              calendar  @relation(fields: [calendar_ukey], references: [ukey])
   resource_ukey         Int
-  resource              resource @relation(fields: [resource_ukey], references: [ukey])
-  created_at            DateTime @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String   @default("SISTEMA")
-  need_create           Boolean  @default(false)
-  need_update           Boolean  @default(false)
-  need_delete           Boolean  @default(false)
+  resource              resource  @relation(fields: [resource_ukey], references: [ukey])
+  created_at            DateTime? @default(now()) @db.Timestamp(0)
+  updated_at            DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?   @default("SISTEMA")
+  need_create           Boolean?  @default(false)
+  need_update           Boolean?  @default(false)
+  need_delete           Boolean?  @default(false)
 }
 
 model no_work_shift {
-  ukey          Int      @id @default(autoincrement())
-  start_at      DateTime @db.Timestamptz(0)
-  stop_at       DateTime @db.Timestamptz(0)
+  ukey          Int       @id @default(autoincrement())
+  start_at      DateTime  @db.Timestamp(0)
+  stop_at       DateTime  @db.Timestamp(0)
   sync_ukey     Int?
   calendar_ukey Int
-  calendar      calendar @relation(fields: [calendar_ukey], references: [ukey])
+  calendar      calendar  @relation(fields: [calendar_ukey], references: [ukey])
   shift_ukey    Int
-  shift         shift    @relation(fields: [shift_ukey], references: [ukey])
-  created_at    DateTime @default(now()) @db.Timestamptz(0)
-  updated_at    DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by    String   @default("SISTEMA")
-  need_create   Boolean  @default(false)
-  need_update   Boolean  @default(false)
-  need_delete   Boolean  @default(false)
+  shift         shift     @relation(fields: [shift_ukey], references: [ukey])
+  created_at    DateTime? @default(now()) @db.Timestamp(0)
+  updated_at    DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by    String?   @default("SISTEMA")
+  need_create   Boolean?  @default(false)
+  need_update   Boolean?  @default(false)
+  need_delete   Boolean?  @default(false)
 }
 
 model operations {
   ukey             Int                @id @default(autoincrement())
-  code             String
-  description      String
+  code             String?
+  description      String?
   sync_ukey        Int?
   production_order production_order[]
-  created_at       DateTime           @default(now()) @db.Timestamptz(0)
-  updated_at       DateTime           @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by       String             @default("SISTEMA")
-  need_create      Boolean            @default(false)
-  need_update      Boolean            @default(false)
-  need_delete      Boolean            @default(false)
+  created_at       DateTime?          @default(now()) @db.Timestamp(0)
+  updated_at       DateTime?          @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by       String?            @default("SISTEMA")
+  need_create      Boolean?           @default(false)
+  need_update      Boolean?           @default(false)
+  need_delete      Boolean?           @default(false)
 }
 
 model parameters {
-  ukey        Int      @id @default(autoincrement())
-  type        String
-  key         String   @unique
-  value       String
+  ukey        Int       @id @default(autoincrement())
+  type        String?
+  key         String    @unique
+  value       String?
   sync_ukey   Int?
-  created_at  DateTime @default(now()) @db.Timestamptz(0)
-  updated_at  DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by  String   @default("SISTEMA")
-  need_create Boolean  @default(false)
-  need_update Boolean  @default(false)
-  need_delete Boolean  @default(false)
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  updated_at  DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by  String?   @default("SISTEMA")
+  need_create Boolean?  @default(false)
+  need_update Boolean?  @default(false)
+  need_delete Boolean?  @default(false)
 }
 
-model prevent_maintence {
+model preventive_maintenance {
   ukey                    Int             @id @default(autoincrement())
-  stop_reason_description String
-  status                  Int
-  is_deleted              Boolean         @default(false)
-  start_at                DateTime        @db.Timestamptz(0)
-  stop_at                 DateTime        @db.Timestamptz(0)
+  stop_reason_description String?
+  status                  Int?
+  is_deleted              Boolean?        @default(false)
+  start_at                DateTime        @db.Timestamp(0)
+  stop_at                 DateTime        @db.Timestamp(0)
   sync_ukey               Int?
   reason_ukey             Int
   reason                  reason          @relation(fields: [reason_ukey], references: [ukey])
   resource_ukey           Int
   resource                resource        @relation(fields: [resource_ukey], references: [ukey])
   resource_stop           resource_stop[]
-  created_at              DateTime        @default(now()) @db.Timestamptz(0)
-  updated_at              DateTime        @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by              String          @default("SISTEMA")
-  need_create             Boolean         @default(false)
-  need_update             Boolean         @default(false)
-  need_delete             Boolean         @default(false)
+  created_at              DateTime?       @default(now()) @db.Timestamp(0)
+  updated_at              DateTime?       @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by              String?         @default("SISTEMA")
+  need_create             Boolean?        @default(false)
+  need_update             Boolean?        @default(false)
+  need_delete             Boolean?        @default(false)
 }
 
 model production_order {
   ukey                        Int                           @id @default(autoincrement())
-  origin                      Int
-  status_order                Int
-  type_refuse                 Int
-  code                        String
-  product                     String
-  planned_quantity            Float
-  realized_quantity           Float
-  open_quantity               Float
-  planned_quantity_refuse     Float
-  real_quantity_refuse        Float
-  goal_availability           Float
-  goal_energy                 Float
-  goal_o3e                    Float
-  goal_oee                    Float
-  goal_ole                    Float
-  goal_performance            Float
-  goal_quality                Float
-  goal_teep                   Float
-  goal_utilization            Float
-  goal_working                Float
-  standard_availability       Float
-  standard_energy             Float
-  standard_speed              Float
-  time_setup                  Float
-  refuse_conversion           Float
-  nonconforming_quantity      Float
+  origin                      Int?
+  status_order                Int?
+  type_refuse                 Int?
+  code                        String?
+  product                     String?
+  planned_quantity            Float?
+  realized_quantity           Float?
+  open_quantity               Float?
+  planned_quantity_refuse     Float?
+  real_quantity_refuse        Float?
+  goal_availability           Float?
+  goal_energy                 Float?
+  goal_o3e                    Float?
+  goal_oee                    Float?
+  goal_ole                    Float?
+  goal_performance            Float?
+  goal_quality                Float?
+  goal_teep                   Float?
+  goal_utilization            Float?
+  goal_working                Float?
+  standard_availability       Float?
+  standard_energy             Float?
+  standard_speed              Float?
+  time_setup                  Float?
+  refuse_conversion           Float?
+  nonconforming_quantity      Float?
   sync_ukey                   Int?
   operation_ukey              Int
   operations                  operations                    @relation(fields: [operation_ukey], references: [ukey])
@@ -342,24 +342,24 @@ model production_order {
   work_center_ukey            Int
   work_center                 work_center                   @relation(fields: [work_center_ukey], references: [ukey])
   production_order_annotation production_order_annotation[]
-  datetime_real_start         DateTime                      @db.Timestamptz(0)
-  datetime_real_end           DateTime                      @db.Timestamptz(0)
-  datetime_planned_end        DateTime                      @db.Timestamptz(6)
-  datetime_planned_start      DateTime                      @db.Timestamptz(6)
-  created_at                  DateTime                      @default(now()) @db.Timestamptz(0)
-  updated_at                  DateTime                      @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by                  String                        @default("SISTEMA")
-  need_create                 Boolean                       @default(false)
-  need_update                 Boolean                       @default(false)
-  need_delete                 Boolean                       @default(false)
+  datetime_real_start         DateTime?                     @db.Timestamp(0)
+  datetime_real_end           DateTime?                     @db.Timestamp(0)
+  datetime_planned_start      DateTime                      @db.Timestamp(6)
+  datetime_planned_end        DateTime                      @db.Timestamp(6)
+  created_at                  DateTime?                     @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime?                     @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by                  String?                       @default("SISTEMA")
+  need_create                 Boolean?                      @default(false)
+  need_update                 Boolean?                      @default(false)
+  need_delete                 Boolean?                      @default(false)
 }
 
 model production_order_annotation {
   ukey                  Int              @id @default(autoincrement())
-  quantity              Float
-  quantity_refuse       Float
-  origin                Int
-  status_annotation     Int
+  quantity              Float?
+  quantity_refuse       Float?
+  origin                Int?
+  status_annotation     Int?
   sync_ukey             Int?
   production_order_ukey Int
   production_order      production_order @relation(fields: [production_order_ukey], references: [ukey])
@@ -367,40 +367,40 @@ model production_order_annotation {
   resource              resource         @relation(fields: [resource_ukey], references: [ukey])
   shift_ukey            Int
   shift                 shift            @relation(fields: [shift_ukey], references: [ukey])
-  created_at            DateTime         @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime         @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String           @default("SISTEMA")
-  need_create           Boolean          @default(false)
-  need_update           Boolean          @default(false)
-  need_delete           Boolean          @default(false)
+  created_at            DateTime?        @default(now()) @db.Timestamp(0)
+  updated_at            DateTime?        @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?          @default("SISTEMA")
+  need_create           Boolean?         @default(false)
+  need_update           Boolean?         @default(false)
+  need_delete           Boolean?         @default(false)
 }
 
 model reason {
-  ukey              Int                 @id @default(autoincrement())
-  name              String
-  type_reason       Int
-  is_produtive      Boolean
-  is_utilization    Boolean
-  is_preventive     Boolean
-  sync_ukey         Int?
-  prevent_maintence prevent_maintence[]
-  resource_stop     resource_stop[]
-  created_at        DateTime            @default(now()) @db.Timestamptz(0)
-  updated_at        DateTime            @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by        String              @default("SISTEMA")
-  need_create       Boolean             @default(false)
-  need_update       Boolean             @default(false)
-  need_delete       Boolean             @default(false)
+  ukey                   Int                      @id @default(autoincrement())
+  name                   String?
+  type_reason            Int?
+  is_produtive           Boolean?
+  is_utilization         Boolean?
+  is_preventive          Boolean?
+  sync_ukey              Int?
+  preventive_maintenance preventive_maintenance[]
+  resource_stop          resource_stop[]
+  created_at             DateTime?                @default(now()) @db.Timestamp(0)
+  updated_at             DateTime?                @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by             String?                  @default("SISTEMA")
+  need_create            Boolean?                 @default(false)
+  need_update            Boolean?                 @default(false)
+  need_delete            Boolean?                 @default(false)
 }
 
 model resource {
   ukey                        Int                           @id @default(autoincrement())
-  name                        String
-  id_monitor                  Int
-  logical_id_monitored        String
-  hourly_cost_value           Float
-  status                      Int
-  keepAlive                   DateTime                      @db.Timestamptz(0)
+  name                        String?
+  id_monitor                  Int?
+  logical_id_monitored        String?
+  hourly_cost_value           Float?
+  status                      Int?
+  keepAlive                   DateTime?                     @db.Timestamp(0)
   sync_ukey                   Int?
   calendar_ukey               Int
   calendar                    calendar                      @relation(fields: [calendar_ukey], references: [ukey])
@@ -410,90 +410,90 @@ model resource {
   bi_hour                     bi_hour[]
   bi_maintence                bi_maintence[]
   monitored_resource          monitored_resource[]
-  prevent_maintence           prevent_maintence[]
+  preventive_maintenance      preventive_maintenance[]
   production_order            production_order[]
   production_order_annotation production_order_annotation[]
   resource_stop               resource_stop[]
   bi_shift                    bi_shift[]
   work_center                 work_center[]
-  created_at                  DateTime                      @default(now()) @db.Timestamptz(0)
-  updated_at                  DateTime                      @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by                  String                        @default("SISTEMA")
-  need_create                 Boolean                       @default(false)
-  need_update                 Boolean                       @default(false)
-  need_delete                 Boolean                       @default(false)
+  created_at                  DateTime?                     @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime?                     @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by                  String?                       @default("SISTEMA")
+  need_create                 Boolean?                      @default(false)
+  need_update                 Boolean?                      @default(false)
+  need_delete                 Boolean?                      @default(false)
 }
 
 model resource_data {
-  ukey              Int      @id @default(autoincrement())
-  data0             Float
-  data1             Float
-  data2             Float
-  data3             Float
-  data4             Float
-  typedata          String
-  group             String
+  ukey              Int       @id @default(autoincrement())
+  data0             Float?
+  data1             Float?
+  data2             Float?
+  data3             Float?
+  data4             Float?
+  typedata          String?
+  group             String?
   resource_ukey     Int
-  resource          resource @relation(fields: [resource_ukey], references: [ukey])
-  captured_datetime DateTime @default(now()) @db.Timestamptz(0)
-  created_at        DateTime @default(now()) @db.Timestamptz(0)
-  updated_at        DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by        String   @default("SISTEMA")
+  resource          resource  @relation(fields: [resource_ukey], references: [ukey])
+  captured_datetime DateTime  @default(now()) @db.Timestamp(0)
+  created_at        DateTime? @default(now()) @db.Timestamp(0)
+  updated_at        DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by        String?   @default("SISTEMA")
 }
 
 model resource_stop {
-  ukey                   Int               @id @default(autoincrement())
-  start_at               DateTime          @db.Timestamptz(0)
-  stop_at                DateTime          @db.Timestamptz(0)
-  sync_ukey              Int?
-  prevent_maintence_ukey Int
-  prevent_maintence      prevent_maintence @relation(fields: [prevent_maintence_ukey], references: [ukey])
-  reason_ukey            Int
-  reason                 reason            @relation(fields: [reason_ukey], references: [ukey])
-  resource_ukey          Int
-  resource               resource          @relation(fields: [resource_ukey], references: [ukey])
-  shift_ukey             Int
-  shift                  shift             @relation(fields: [shift_ukey], references: [ukey])
-  created_at             DateTime          @default(now()) @db.Timestamptz(0)
-  updated_at             DateTime          @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by             String            @default("SISTEMA")
-  need_create            Boolean           @default(false)
-  need_update            Boolean           @default(false)
-  need_delete            Boolean           @default(false)
+  ukey                        Int                    @id @default(autoincrement())
+  start_at                    DateTime               @db.Timestamp(0)
+  stop_at                     DateTime?               @db.Timestamp(0)
+  sync_ukey                   Int?
+  preventive_maintenance_ukey Int
+  preventive_maintenance      preventive_maintenance @relation(fields: [preventive_maintenance_ukey], references: [ukey])
+  reason_ukey                 Int
+  reason                      reason                 @relation(fields: [reason_ukey], references: [ukey])
+  resource_ukey               Int
+  resource                    resource               @relation(fields: [resource_ukey], references: [ukey])
+  shift_ukey                  Int
+  shift                       shift                  @relation(fields: [shift_ukey], references: [ukey])
+  created_at                  DateTime?               @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime?               @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by                  String?                @default("SISTEMA")
+  need_create                 Boolean?               @default(false)
+  need_update                 Boolean?               @default(false)
+  need_delete                 Boolean?               @default(false)
 }
 
 model resource_type {
   ukey        Int        @id @default(autoincrement())
-  name        String
+  name        String?
   sync_ukey   Int?
   resource    resource[]
-  created_at  DateTime   @default(now()) @db.Timestamptz(0)
-  updated_at  DateTime   @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by  String     @default("SISTEMA")
-  need_create Boolean    @default(false)
-  need_update Boolean    @default(false)
-  need_delete Boolean    @default(false)
+  created_at  DateTime?   @default(now()) @db.Timestamp(0)
+  updated_at  DateTime?   @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by  String?    @default("SISTEMA")
+  need_create Boolean?   @default(false)
+  need_update Boolean?   @default(false)
+  need_delete Boolean?   @default(false)
 }
 
 model sector {
   ukey         Int           @id @default(autoincrement())
-  code         String
-  name         String
+  code         String?
+  name         String?
   sync_ukey    Int?
   company_ukey Int
   company      company       @relation(fields: [company_ukey], references: [ukey])
   work_center  work_center[]
-  created_at   DateTime      @default(now()) @db.Timestamptz(0)
-  updated_at   DateTime      @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by   String        @default("SISTEMA")
-  need_create  Boolean       @default(false)
-  need_update  Boolean       @default(false)
-  need_delete  Boolean       @default(false)
+  created_at   DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at   DateTime?      @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by   String?       @default("SISTEMA")
+  need_create  Boolean?      @default(false)
+  need_update  Boolean?      @default(false)
+  need_delete  Boolean?      @default(false)
 }
 
 model shift {
   ukey                        Int                           @id @default(autoincrement())
-  name                        String
+  name                        String?
   sync_ukey                   Int?
   bi_hour                     bi_hour[]
   bi_maintence                bi_maintence[]
@@ -502,62 +502,62 @@ model shift {
   resource_stop               resource_stop[]
   bi_shift                    bi_shift[]
   work_shift                  work_shift[]
-  created_at                  DateTime                      @default(now()) @db.Timestamptz(0)
-  updated_at                  DateTime                      @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by                  String                        @default("SISTEMA")
-  need_create                 Boolean                       @default(false)
-  need_update                 Boolean                       @default(false)
-  need_delete                 Boolean                       @default(false)
+  created_at                  DateTime?                      @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime?                      @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by                  String?                       @default("SISTEMA")
+  need_create                 Boolean?                      @default(false)
+  need_update                 Boolean?                      @default(false)
+  need_delete                 Boolean?                      @default(false)
 }
 
 model units {
   ukey                                                         Int                @id @default(autoincrement())
-  initials                                                     String             @default("")
-  description                                                  String             @default("")
+  initials                                                     String?            @default("")
+  description                                                  String?            @default("")
   sync_ukey                                                    Int?
   production_order_production_order_unity_quantity_ukeyTounits production_order[] @relation("production_order_unity_quantity_ukeyTounits")
   production_order_production_order_unity_refuse_ukeyTounits   production_order[] @relation("production_order_unity_refuse_ukeyTounits")
-  created_at                                                   DateTime           @default(now()) @db.Timestamptz(0)
-  updated_at                                                   DateTime           @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by                                                   String             @default("SISTEMA")
-  need_create                                                  Boolean
-  need_update                                                  Boolean
-  need_delete                                                  Boolean
+  created_at                                                   DateTime?           @default(now()) @db.Timestamp(0)
+  updated_at                                                   DateTime?           @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by                                                   String?            @default("SISTEMA")
+  need_create                                                  Boolean?
+  need_update                                                  Boolean?
+  need_delete                                                  Boolean?
 }
 
 model users {
   ukey         Int      @id @default(autoincrement())
-  name         String
-  email        String
-  login        String
-  password     String
+  name         String?
+  email        String?
+  login        String?
+  password     String?
   sync_ukey    Int?
   company_ukey Int
   company      company  @relation(fields: [company_ukey], references: [ukey])
-  created_at   DateTime @default(now()) @db.Timestamptz(0)
-  updated_at   DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by   String   @default("SISTEMA")
-  need_create  Boolean  @default(false)
-  need_update  Boolean  @default(false)
-  need_delete  Boolean  @default(false)
+  created_at   DateTime? @default(now()) @db.Timestamp(0)
+  updated_at   DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by   String?  @default("SISTEMA")
+  need_create  Boolean? @default(false)
+  need_update  Boolean? @default(false)
+  need_delete  Boolean? @default(false)
 }
 
 model work_center {
   ukey                  Int                @id @default(autoincrement())
-  name                  String
-  goal_availability     Float
-  goal_energy           Float
-  goal_o3e              Float
-  goal_oee              Float
-  goal_ole              Float
-  goal_performance      Float
-  goal_quality          Float
-  goal_teep             Float
-  goal_utilization      Float
-  goal_working          Float
-  standard_availability Float
-  standard_energy       Float
-  standard_speed        Float
+  name                  String?
+  goal_availability     Float?
+  goal_energy           Float?
+  goal_o3e              Float?
+  goal_oee              Float?
+  goal_ole              Float?
+  goal_performance      Float?
+  goal_quality          Float?
+  goal_teep             Float?
+  goal_utilization      Float?
+  goal_working          Float?
+  standard_availability Float?
+  standard_energy       Float?
+  standard_speed        Float?
   sync_ukey             Int?
   calendar_ukey         Int
   calendar              calendar           @relation(fields: [calendar_ukey], references: [ukey])
@@ -566,28 +566,28 @@ model work_center {
   sector_ukey           Int
   sector                sector             @relation(fields: [sector_ukey], references: [ukey])
   production_order      production_order[]
-  created_at            DateTime           @default(now()) @db.Timestamptz(0)
-  updated_at            DateTime           @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by            String             @default("SISTEMA")
-  need_create           Boolean            @default(false)
-  need_update           Boolean            @default(false)
-  need_delete           Boolean            @default(false)
+  created_at            DateTime?           @default(now()) @db.Timestamp(0)
+  updated_at            DateTime?           @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by            String?            @default("SISTEMA")
+  need_create           Boolean?           @default(false)
+  need_update           Boolean?           @default(false)
+  need_delete           Boolean?           @default(false)
 }
 
 model work_shift {
-  ukey              Int      @id
-  day_week          Int
-  day_start_minutes Int
-  day_end_minutes   Int
+  ukey              Int      @id @default(autoincrement())
+  day_week          Int?
+  day_start_minutes Int?
+  day_end_minutes   Int?
   sync_ukey         Int?
   calendar_ukey     Int
   calendar          calendar @relation(fields: [calendar_ukey], references: [ukey])
   shift_ukey        Int
   shift             shift    @relation(fields: [shift_ukey], references: [ukey])
-  created_at        DateTime @default(now()) @db.Timestamptz(0)
-  updated_at        DateTime @default(now()) @updatedAt @db.Timestamptz(0)
-  updated_by        String   @default("SISTEMA")
-  need_create       Boolean  @default(false)
-  need_update       Boolean  @default(false)
-  need_delete       Boolean  @default(false)
+  created_at        DateTime? @default(now()) @db.Timestamp()
+  updated_at        DateTime? @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by        String?  @default("SISTEMA")
+  need_create       Boolean? @default(false)
+  need_update       Boolean? @default(false)
+  need_delete       Boolean? @default(false)
 }

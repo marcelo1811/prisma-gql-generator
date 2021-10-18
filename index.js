@@ -2,12 +2,15 @@ const fs = require('fs');
 
 const fileToRead = 'prisma.schema';
 const outputFileName = 'result.gql';
+
+// TODO MARCELO: CORRIGIR LÓGICA E ADICIONAR TIPAGENS DO PRISMA
 const validTypes = [
   'Int',
   'String',
   'Float',
   'Boolean',
   'Date',
+  'ID',
 ]
 
 let schema
