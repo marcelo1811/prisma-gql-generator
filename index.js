@@ -428,8 +428,6 @@ let result = schema;
 const columnArgsRegex = /\s*@.*/gm;
 result = result.replaceAll(columnArgsRegex, '');
 
-fs.writeFileSync('removeColumnArgs.txt', result);
-
 function transformLowerSneakCaseToUpperCamelCase(string) {
   const sneakCaseRegex = /(_\w)/gm;
   return string.replace(sneakCaseRegex, (match, capture) => {
@@ -443,8 +441,6 @@ result = result.replace(modelNameRegex, (math, capture) => {
   return transformLowerSneakCaseToUpperCamelCase(capitalized)
 })
 
-fs.writeFileSync('modelNameUppercased.txt', result);
-
 const modelRegex = /model(.|\s)*?}/gm;
 let models = result.match(modelRegex);
 
@@ -454,6 +450,10 @@ models = models.map((model) => {
   newModel = modelLines.map(line => {
     if (line.match(/({|})/g)) return line;
     const fields = line.trim().split(/\s+/g);
+
+    // Capitalize type
+    fields[1] = fields[1].replace(/^\w/, (c) => c.toUpperCase())
+    fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
     const joined = '  '.concat(fields.join(': '))
     return joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
   })
