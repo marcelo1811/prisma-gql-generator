@@ -26,11 +26,9 @@ type BiHour {
   week: Int!
   sync_ukey: Int
   resource_ukey: Int!
-  resource: Resource!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -65,11 +63,9 @@ type BiMaintence {
   week: Int!
   sync_ukey: Int
   resource_ukey: Int!
-  resource: Resource!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -79,16 +75,11 @@ type BiMaintence {
 type Calendar {
   ukey: Int!
   name: String!
-  start_at: DateTime!
-  stop_at: DateTime!
+  start_at: Date!
+  stop_at: Date!
   sync_ukey: Int
-  no_work_shift: NoWorkShift[]!
-  resource: Resource[]!
-  work_center: WorkCenter[]!
-  work_shift: WorkShift[]!
-  monitored_resource: MonitoredResource[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -123,11 +114,9 @@ type BiShift {
   week: Int!
   sync_ukey: Int
   resource_ukey: Int!
-  resource: Resource!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -151,13 +140,9 @@ type Company {
   timezone: Int!
   sync_ukey: Int
   company_group_ukey: Int!
-  company_group: CompanyGroup!
   currency_ukey: Int!
-  currency: Currency!
-  sector: Sector[]!
-  users: Users[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -168,9 +153,8 @@ type CompanyGroup {
   ukey: Int!
   name: String!
   sync_ukey: Int
-  company: Company[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -183,10 +167,8 @@ type Currency {
   code: String!
   symbol: String!
   sync_ukey: Int
-  company: Company[]!
-  monitored_resource: MonitoredResource[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -214,13 +196,10 @@ type MonitoredResource {
   time_setup: Float!
   sync_ukey: Int
   currency_ukey: Int!
-  currency: Currency!
   calendar_ukey: Int!
-  calendar: Calendar!
   resource_ukey: Int!
-  resource: Resource!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -229,15 +208,13 @@ type MonitoredResource {
 
 type NoWorkShift {
   ukey: Int!
-  start_at: DateTime!
-  stop_at: DateTime!
+  start_at: Date!
+  stop_at: Date!
   sync_ukey: Int
   calendar_ukey: Int!
-  calendar: Calendar!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -249,9 +226,8 @@ type Operations {
   code: String!
   description: String!
   sync_ukey: Int
-  production_order: ProductionOrder[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -264,8 +240,8 @@ type Parameters {
   key: String!
   value: String!
   sync_ukey: Int
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -277,16 +253,13 @@ type PreventMaintence {
   stop_reason_description: String!
   status: Int!
   is_deleted: Boolean!
-  start_at: DateTime!
-  stop_at: DateTime!
+  start_at: Date!
+  stop_at: Date!
   sync_ukey: Int
   reason_ukey: Int!
-  reason: Reason!
   resource_ukey: Int!
-  resource: Resource!
-  resource_stop: ResourceStop[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -323,22 +296,16 @@ type ProductionOrder {
   nonconforming_quantity: Float!
   sync_ukey: Int
   operation_ukey: Int!
-  operations: Operations!
   resource_ukey: Int!
-  resource: Resource!
   unity_quantity_ukey: Int!
-  unity_quantity: Units!
   unity_refuse_ukey: Int!
-  unity_quantity_refuse: Units!
   work_center_ukey: Int!
-  work_center: WorkCenter!
-  production_order_annotation: ProductionOrderAnnotation[]!
-  datetime_real_start: DateTime!
-  datetime_real_end: DateTime!
-  datetime_planned_end: DateTime!
-  datetime_planned_start: DateTime!
-  created_at: DateTime!
-  updated_at: DateTime!
+  datetime_real_start: Date!
+  datetime_real_end: Date!
+  datetime_planned_end: Date!
+  datetime_planned_start: Date!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -353,13 +320,10 @@ type ProductionOrderAnnotation {
   status_annotation: Int!
   sync_ukey: Int
   production_order_ukey: Int!
-  production_order: ProductionOrder!
   resource_ukey: Int!
-  resource: Resource!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -374,10 +338,8 @@ type Reason {
   is_utilization: Boolean!
   is_preventive: Boolean!
   sync_ukey: Int
-  prevent_maintence: PreventMaintence[]!
-  resource_stop: ResourceStop[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -391,24 +353,12 @@ type Resource {
   logical_id_monitored: String!
   hourly_cost_value: Float!
   status: Int!
-  keepAlive: DateTime!
+  keepAlive: Date!
   sync_ukey: Int
   calendar_ukey: Int!
-  calendar: Calendar!
   resource_type_ukey: Int!
-  resource_type: ResourceType!
-  resource_data: ResourceData[]!
-  bi_hour: BiHour[]!
-  bi_maintence: BiMaintence[]!
-  monitored_resource: MonitoredResource[]!
-  prevent_maintence: PreventMaintence[]!
-  production_order: ProductionOrder[]!
-  production_order_annotation: ProductionOrderAnnotation[]!
-  resource_stop: ResourceStop[]!
-  bi_shift: BiShift[]!
-  work_center: WorkCenter[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -425,28 +375,23 @@ type ResourceData {
   typedata: String!
   group: String!
   resource_ukey: Int!
-  resource: Resource!
-  captured_datetime: DateTime!
-  created_at: DateTime!
-  updated_at: DateTime!
+  captured_datetime: Date!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
 }
 
 type ResourceStop {
   ukey: Int!
-  start_at: DateTime!
-  stop_at: DateTime!
+  start_at: Date!
+  stop_at: Date!
   sync_ukey: Int
   prevent_maintence_ukey: Int!
-  prevent_maintence: PreventMaintence!
   reason_ukey: Int!
-  reason: Reason!
   resource_ukey: Int!
-  resource: Resource!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -457,9 +402,8 @@ type ResourceType {
   ukey: Int!
   name: String!
   sync_ukey: Int
-  resource: Resource[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -472,10 +416,8 @@ type Sector {
   name: String!
   sync_ukey: Int
   company_ukey: Int!
-  company: Company!
-  work_center: WorkCenter[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -486,15 +428,8 @@ type Shift {
   ukey: Int!
   name: String!
   sync_ukey: Int
-  bi_hour: BiHour[]!
-  bi_maintence: BiMaintence[]!
-  no_work_shift: NoWorkShift[]!
-  production_order_annotation: ProductionOrderAnnotation[]!
-  resource_stop: ResourceStop[]!
-  bi_shift: BiShift[]!
-  work_shift: WorkShift[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -506,10 +441,8 @@ type Units {
   initials: String!
   description: String!
   sync_ukey: Int
-  production_order_production_order_unity_quantity_ukeyTounits: ProductionOrder[]!
-  production_order_production_order_unity_refuse_ukeyTounits: ProductionOrder[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -524,9 +457,8 @@ type Users {
   password: String!
   sync_ukey: Int
   company_ukey: Int!
-  company: Company!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -551,14 +483,10 @@ type WorkCenter {
   standard_speed: Float!
   sync_ukey: Int
   calendar_ukey: Int!
-  calendar: Calendar!
   resource_ukey: Int!
-  resource: Resource!
   sector_ukey: Int!
-  sector: Sector!
-  production_order: ProductionOrder[]!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!
@@ -572,11 +500,9 @@ type WorkShift {
   day_end_minutes: Int!
   sync_ukey: Int
   calendar_ukey: Int!
-  calendar: Calendar!
   shift_ukey: Int!
-  shift: Shift!
-  created_at: DateTime!
-  updated_at: DateTime!
+  created_at: Date!
+  updated_at: Date!
   updated_by: String!
   need_create: Boolean!
   need_update: Boolean!

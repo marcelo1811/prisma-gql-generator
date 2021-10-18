@@ -2,6 +2,13 @@ const fs = require('fs');
 
 const fileToRead = 'prisma.schema';
 const outputFileName = 'result.gql';
+const validTypes = [
+  'Int',
+  'String',
+  'Float',
+  'Boolean',
+  'Date',
+]
 
 let schema
 try {
@@ -42,10 +49,15 @@ models = models.map((model) => {
     const fields = line.trim().split(/\s+/g);
 
     fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
-    const joined = '  '.concat(fields.join(': '));
-    return joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+    let joined = '  '.concat(fields.join(': '));
+
+    if (!validTypes.some(v => joined.includes(v))) return;
+
+    joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+    joined = joined.replace('DateTime', 'Date');
+    return joined;
   })
-  return newModel.join('\n');
+  return newModel.filter(line => line).join('\n');
 })
 
 result = models.join('\n\n');
