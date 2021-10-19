@@ -23,10 +23,10 @@ try {
 let result = schema;
 
 const startOfLineSpaceregex = /^\s*/gm;
-result = result.replaceAll(startOfLineSpaceregex, '');
+result = result.replace(startOfLineSpaceregex, '');
 
 const columnArgsRegex = /\s*@.*/gm;
-result = result.replaceAll(columnArgsRegex, '');
+result = result.replace(columnArgsRegex, '');
 
 function transformLowerSneakCaseToUpperCamelCase(string) {
   const sneakCaseRegex = /(_\w)/gm;
