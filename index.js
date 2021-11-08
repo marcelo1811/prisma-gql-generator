@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+console.log('Starting...')
 const fileToRead = 'prisma.schema';
 const outputFileName = 'result.gql';
 
@@ -60,12 +61,37 @@ models = models.map((model) => {
     joined = joined.replace('DateTime', 'Date');
     return joined;
   })
-  return newModel.filter(line => line).join('\n');
+
+  newModelInput = modelLines.map(line => {
+    if (line.match(/({|})/g)) {
+      let newLine = line.split(' ');
+      if (newLine.length !== 3) return line;
+      newLine[0] = 'input'
+      newLine[1] = newLine[1] + 'Input'
+      return newLine.join(' ');
+  };
+    const fields = line.trim().split(/\s+/g);
+
+    fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
+    let joined = '  '.concat(fields.join(': '));
+
+    if (!validTypes.some(v => joined.includes(v))) return;
+
+    joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+    joined = joined.replace('DateTime', 'Date');
+    return joined;
+  })
+
+  return [
+    newModel.filter(line => line).join('\n'),
+    newModelInput.filter(line => line).join('\n')
+  ].join('\n\n');
 })
 
 result = models.join('\n\n');
 
 fs.writeFileSync(outputFileName, result);
+console.log('Done!');
 
 
 

@@ -24,15 +24,57 @@ type BiHour {
   realized_working: Float
   hour: Int
   week: Int
+  duration: Int
   sync_ukey: Int
   resource_ukey: Int!
   shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
   created_at: Date
   updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input BiHourInput {
+  ukey: Int!
+  resource_name: String
+  shift_name: String
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  realized_availability: Float
+  realized_energy: Float
+  realized_o3e: Float
+  realized_oee: Float
+  realized_ole: Float
+  realized_performance: Float
+  realized_quality: Float
+  realized_teep: Float
+  realized_utilization: Float
+  realized_working: Float
+  hour: Int
+  week: Int
+  duration: Int
+  sync_ukey: Int
+  resource_ukey: Int!
+  shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type BiMaintence {
@@ -61,15 +103,57 @@ type BiMaintence {
   realized_working: Float
   hour: Int
   week: Int
+  duration: Int
   sync_ukey: Int
   resource_ukey: Int!
   shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
   created_at: Date!
   updated_at: Date!
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input BiMaintenceInput {
+  ukey: Int!
+  resource_name: String
+  shift_name: String
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  realized_availability: Float
+  realized_energy: Float
+  realized_o3e: Float
+  realized_oee: Float
+  realized_ole: Float
+  realized_performance: Float
+  realized_quality: Float
+  realized_teep: Float
+  realized_utilization: Float
+  realized_working: Float
+  hour: Int
+  week: Int
+  duration: Int
+  sync_ukey: Int
+  resource_ukey: Int!
+  shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
+  created_at: Date!
+  updated_at: Date!
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type BiShift {
@@ -98,15 +182,57 @@ type BiShift {
   realized_working: Float
   hour: Int
   week: Int
+  duration: Int
   sync_ukey: Int
   resource_ukey: Int!
   shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
   created_at: Date!
   updated_at: Date!
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input BiShiftInput {
+  ukey: Int!
+  resource_name: String
+  shift_name: String
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  realized_availability: Float
+  realized_energy: Float
+  realized_o3e: Float
+  realized_oee: Float
+  realized_ole: Float
+  realized_performance: Float
+  realized_quality: Float
+  realized_teep: Float
+  realized_utilization: Float
+  realized_working: Float
+  hour: Int
+  week: Int
+  duration: Int
+  sync_ukey: Int
+  resource_ukey: Int!
+  shift_ukey: Int!
+  datetime: Date
+  previous_datetime: Date
+  created_at: Date!
+  updated_at: Date!
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Calendar {
@@ -120,7 +246,20 @@ type Calendar {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input CalendarInput {
+  ukey: Int!
+  name: String
+  start_at: Date
+  stop_at: Date
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Company {
@@ -146,7 +285,32 @@ type Company {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input CompanyInput {
+  ukey: Int!
+  name: String
+  country: String
+  state: String
+  city: String
+  zip_code: String
+  street: String
+  number: String
+  complement: String
+  email: String
+  name_contact: String
+  register_type: Int
+  register_number: Int
+  timezone: Int
+  sync_ukey: Int
+  company_group_ukey: Int!
+  currency_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type CompanyGroup {
@@ -158,7 +322,18 @@ type CompanyGroup {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input CompanyGroupInput {
+  ukey: Int!
+  name: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Currency {
@@ -172,7 +347,20 @@ type Currency {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input CurrencyInput {
+  ukey: Int!
+  name: String
+  code: String
+  symbol: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type MonitoredResource {
@@ -203,7 +391,37 @@ type MonitoredResource {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input MonitoredResourceInput {
+  ukey: Int!
+  id_hardware_monitored: String
+  name_machine: String
+  status: Int
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  standard_availability: Float
+  standard_energy: Float
+  standard_speed: Float
+  time_setup: Float
+  sync_ukey: Int
+  currency_ukey: Int!
+  calendar_ukey: Int!
+  resource_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type NoWorkShift {
@@ -218,7 +436,21 @@ type NoWorkShift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input NoWorkShiftInput {
+  ukey: Int!
+  start_at: Date!
+  stop_at: Date!
+  sync_ukey: Int
+  calendar_ukey: Int!
+  shift_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Operations {
@@ -231,7 +463,19 @@ type Operations {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input OperationsInput {
+  ukey: Int!
+  code: String
+  description: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Parameters {
@@ -245,14 +489,26 @@ type Parameters {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ParametersInput {
+  ukey: Int!
+  type: String
+  key: String!
+  value: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type PreventiveMaintenance {
   ukey: Int!
   stop_reason_description: String
   status: Int
-  is_deleted: Boolean
   start_at: Date!
   stop_at: Date!
   sync_ukey: Int
@@ -263,7 +519,23 @@ type PreventiveMaintenance {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input PreventiveMaintenanceInput {
+  ukey: Int!
+  stop_reason_description: String
+  status: Int
+  start_at: Date!
+  stop_at: Date!
+  sync_ukey: Int
+  reason_ukey: Int!
+  resource_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type ProductionOrder {
@@ -300,16 +572,61 @@ type ProductionOrder {
   unity_quantity_ukey: Int!
   unity_refuse_ukey: Int!
   work_center_ukey: Int!
-  datetime_real_start: Date
-  datetime_real_end: Date
-  datetime_planned_start: Date!
-  datetime_planned_end: Date!
+  real_start: Date
+  real_end: Date
+  planned_start: Date!
+  planned_end: Date!
   created_at: Date
   updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ProductionOrderInput {
+  ukey: Int!
+  origin: Int
+  status_order: Int
+  type_refuse: Int
+  code: String
+  product: String
+  planned_quantity: Float
+  realized_quantity: Float
+  open_quantity: Float
+  planned_quantity_refuse: Float
+  real_quantity_refuse: Float
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  standard_availability: Float
+  standard_energy: Float
+  standard_speed: Float
+  time_setup: Float
+  refuse_conversion: Float
+  nonconforming_quantity: Float
+  sync_ukey: Int
+  operation_ukey: Int!
+  resource_ukey: Int!
+  unity_quantity_ukey: Int!
+  unity_refuse_ukey: Int!
+  work_center_ukey: Int!
+  real_start: Date
+  real_end: Date
+  planned_start: Date!
+  planned_end: Date!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type ProductionOrderAnnotation {
@@ -327,7 +644,24 @@ type ProductionOrderAnnotation {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ProductionOrderAnnotationInput {
+  ukey: Int!
+  quantity: Float
+  quantity_refuse: Float
+  origin: Int
+  status_annotation: Int
+  sync_ukey: Int
+  production_order_ukey: Int!
+  resource_ukey: Int!
+  shift_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Reason {
@@ -343,7 +677,22 @@ type Reason {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ReasonInput {
+  ukey: Int!
+  name: String
+  type_reason: Int
+  is_produtive: Boolean
+  is_utilization: Boolean
+  is_preventive: Boolean
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Resource {
@@ -353,16 +702,36 @@ type Resource {
   logical_id_monitored: String
   hourly_cost_value: Float
   status: Int
-  keepAlive: Date
+  keep_alive: Date
   sync_ukey: Int
   calendar_ukey: Int!
   resource_type_ukey: Int!
+  work_center_ukey: Int!
   created_at: Date
   updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ResourceInput {
+  ukey: Int!
+  name: String
+  id_monitor: Int
+  logical_id_monitored: String
+  hourly_cost_value: Float
+  status: Int
+  keep_alive: Date
+  sync_ukey: Int
+  calendar_ukey: Int!
+  resource_type_ukey: Int!
+  work_center_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type ResourceData {
@@ -372,8 +741,19 @@ type ResourceData {
   data2: Float
   data3: Float
   data4: Float
-  typedata: String
-  group: String
+  resource_ukey: Int!
+  captured_datetime: Date!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+}
+input ResourceDataInput {
+  ukey: Int!
+  data0: Float
+  data1: Float
+  data2: Float
+  data3: Float
+  data4: Float
   resource_ukey: Int!
   captured_datetime: Date!
   created_at: Date
@@ -395,7 +775,23 @@ type ResourceStop {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ResourceStopInput {
+  ukey: Int!
+  start_at: Date!
+  stop_at: Date
+  sync_ukey: Int
+  preventive_maintenance_ukey: Int!
+  reason_ukey: Int!
+  resource_ukey: Int!
+  shift_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type ResourceType {
@@ -407,7 +803,18 @@ type ResourceType {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ResourceTypeInput {
+  ukey: Int!
+  name: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Sector {
@@ -421,7 +828,20 @@ type Sector {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input SectorInput {
+  ukey: Int!
+  code: String
+  name: String
+  sync_ukey: Int
+  company_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type Shift {
@@ -433,10 +853,21 @@ type Shift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input ShiftInput {
+  ukey: Int!
+  name: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
-type Units {
+type Unit {
   ukey: Int!
   initials: String
   description: String
@@ -446,10 +877,22 @@ type Units {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input UnitInput {
+  ukey: Int!
+  initials: String
+  description: String
+  sync_ukey: Int
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
-type Users {
+type User {
   ukey: Int!
   name: String
   email: String
@@ -462,7 +905,22 @@ type Users {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input UserInput {
+  ukey: Int!
+  name: String
+  email: String
+  login: String
+  password: String
+  sync_ukey: Int
+  company_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type WorkCenter {
@@ -483,21 +941,46 @@ type WorkCenter {
   standard_speed: Float
   sync_ukey: Int
   calendar_ukey: Int!
-  resource_ukey: Int!
   sector_ukey: Int!
   created_at: Date
   updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input WorkCenterInput {
+  ukey: Int!
+  name: String
+  goal_availability: Float
+  goal_energy: Float
+  goal_o3e: Float
+  goal_oee: Float
+  goal_ole: Float
+  goal_performance: Float
+  goal_quality: Float
+  goal_teep: Float
+  goal_utilization: Float
+  goal_working: Float
+  standard_availability: Float
+  standard_energy: Float
+  standard_speed: Float
+  sync_ukey: Int
+  calendar_ukey: Int!
+  sector_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
 
 type WorkShift {
   ukey: Int!
-  day_week: Int
-  day_start_minutes: Int
-  day_end_minutes: Int
+  day_week: Int!
+  day_start_minutes: Int!
+  day_end_minutes: Int!
   sync_ukey: Int
   calendar_ukey: Int!
   shift_ukey: Int!
@@ -506,5 +989,20 @@ type WorkShift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
-  need_delete: Boolean
+  is_deleted: Boolean
+}
+input WorkShiftInput {
+  ukey: Int!
+  day_week: Int!
+  day_start_minutes: Int!
+  day_end_minutes: Int!
+  sync_ukey: Int
+  calendar_ukey: Int!
+  shift_ukey: Int!
+  created_at: Date
+  updated_at: Date
+  updated_by: String
+  need_create: Boolean
+  need_update: Boolean
+  is_deleted: Boolean
 }
