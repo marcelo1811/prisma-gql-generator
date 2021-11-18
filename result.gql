@@ -41,7 +41,7 @@ type BiHour {
 }
 
 input BiHourInput {
-  ukey: Int!
+  ukey: Int
   resource_name: String
   shift_name: String
   goal_availability: Float
@@ -68,8 +68,8 @@ input BiHourInput {
   week: Int
   duration: Int
   sync_ukey: Int
-  resource_ukey: Int!
-  shift_ukey: Int!
+  resource_ukey: Int
+  shift_ukey: Int
   datetime: Date
   previous_datetime: Date
   created_at: Date
@@ -123,7 +123,7 @@ type BiMaintence {
 }
 
 input BiMaintenceInput {
-  ukey: Int!
+  ukey: Int
   resource_name: String
   shift_name: String
   goal_availability: Float
@@ -150,8 +150,8 @@ input BiMaintenceInput {
   week: Int
   duration: Int
   sync_ukey: Int
-  resource_ukey: Int!
-  shift_ukey: Int!
+  resource_ukey: Int
+  shift_ukey: Int
   datetime: Date
   previous_datetime: Date
   created_at: Date!
@@ -205,7 +205,7 @@ type BiShift {
 }
 
 input BiShiftInput {
-  ukey: Int!
+  ukey: Int
   resource_name: String
   shift_name: String
   goal_availability: Float
@@ -232,8 +232,8 @@ input BiShiftInput {
   week: Int
   duration: Int
   sync_ukey: Int
-  resource_ukey: Int!
-  shift_ukey: Int!
+  resource_ukey: Int
+  shift_ukey: Int
   datetime: Date
   previous_datetime: Date
   created_at: Date!
@@ -264,7 +264,7 @@ type Calendar {
 }
 
 input CalendarInput {
-  ukey: Int!
+  ukey: Int
   name: String
   start_at: Date
   stop_at: Date
@@ -308,7 +308,7 @@ type Company {
 }
 
 input CompanyInput {
-  ukey: Int!
+  ukey: Int
   name: String
   country: String
   state: String
@@ -323,8 +323,8 @@ input CompanyInput {
   register_number: Int
   timezone: Int
   sync_ukey: Int
-  company_group_ukey: Int!
-  currency_ukey: Int!
+  company_group_ukey: Int
+  currency_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -347,7 +347,7 @@ type CompanyGroup {
 }
 
 input CompanyGroupInput {
-  ukey: Int!
+  ukey: Int
   name: String
   sync_ukey: Int
   created_at: Date
@@ -375,7 +375,7 @@ type Currency {
 }
 
 input CurrencyInput {
-  ukey: Int!
+  ukey: Int
   name: String
   code: String
   symbol: String
@@ -423,7 +423,7 @@ type MonitoredResource {
 }
 
 input MonitoredResourceInput {
-  ukey: Int!
+  ukey: Int
   id_hardware_monitored: String
   name_machine: String
   status: Int
@@ -442,9 +442,9 @@ input MonitoredResourceInput {
   standard_speed: Float
   time_setup: Float
   sync_ukey: Int
-  currency_ukey: Int!
-  calendar_ukey: Int!
-  resource_ukey: Int!
+  currency_ukey: Int
+  calendar_ukey: Int
+  resource_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -471,12 +471,12 @@ type NoWorkShift {
 }
 
 input NoWorkShiftInput {
-  ukey: Int!
+  ukey: Int
   start_at: Date!
   stop_at: Date!
   sync_ukey: Int
-  calendar_ukey: Int!
-  shift_ukey: Int!
+  calendar_ukey: Int
+  shift_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -500,7 +500,7 @@ type Operations {
 }
 
 input OperationsInput {
-  ukey: Int!
+  ukey: Int
   code: String
   description: String
   sync_ukey: Int
@@ -527,7 +527,7 @@ type Parameters {
 }
 
 input ParametersInput {
-  ukey: Int!
+  ukey: Int
   type: String
   key: String!
   value: String
@@ -561,14 +561,14 @@ type PreventiveMaintenance {
 }
 
 input PreventiveMaintenanceInput {
-  ukey: Int!
+  ukey: Int
   stop_reason_description: String
   status: Int
   start_at: Date!
   stop_at: Date!
   sync_ukey: Int
-  reason_ukey: Int!
-  resource_ukey: Int!
+  reason_ukey: Int
+  resource_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -630,7 +630,7 @@ type ProductionOrder {
 }
 
 input ProductionOrderInput {
-  ukey: Int!
+  ukey: Int
   origin: Int
   status_order: Int
   type_refuse: Int
@@ -658,11 +658,11 @@ input ProductionOrderInput {
   refuse_conversion: Float
   nonconforming_quantity: Float
   sync_ukey: Int
-  operation_ukey: Int!
-  resource_ukey: Int!
-  unity_quantity_ukey: Int!
-  unity_refuse_ukey: Int!
-  work_center_ukey: Int!
+  operation_ukey: Int
+  resource_ukey: Int
+  unity_quantity_ukey: Int
+  unity_refuse_ukey: Int
+  work_center_ukey: Int
   real_start: Date
   real_end: Date
   planned_start: Date!
@@ -697,15 +697,15 @@ type ProductionOrderAnnotation {
 }
 
 input ProductionOrderAnnotationInput {
-  ukey: Int!
+  ukey: Int
   quantity: Float
   quantity_refuse: Float
   origin: Int
   status_annotation: Int
   sync_ukey: Int
-  production_order_ukey: Int!
-  resource_ukey: Int!
-  shift_ukey: Int!
+  production_order_ukey: Int
+  resource_ukey: Int
+  shift_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -733,7 +733,7 @@ type Reason {
 }
 
 input ReasonInput {
-  ukey: Int!
+  ukey: Int
   name: String
   type_reason: Int
   is_produtive: Boolean
@@ -781,7 +781,7 @@ type Resource {
 }
 
 input ResourceInput {
-  ukey: Int!
+  ukey: Int
   name: String
   id_monitor: Int
   logical_id_monitored: String
@@ -789,9 +789,9 @@ input ResourceInput {
   status: Int
   keep_alive: Date
   sync_ukey: Int
-  calendar_ukey: Int!
-  resource_type_ukey: Int!
-  work_center_ukey: Int!
+  calendar_ukey: Int
+  resource_type_ukey: Int
+  work_center_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -816,13 +816,13 @@ type ResourceData {
 }
 
 input ResourceDataInput {
-  ukey: Int!
+  ukey: Int
   data0: Float
   data1: Float
   data2: Float
   data3: Float
   data4: Float
-  resource_ukey: Int!
+  resource_ukey: Int
   captured_datetime: Date!
   created_at: Date
   updated_at: Date
@@ -851,14 +851,14 @@ type ResourceStop {
 }
 
 input ResourceStopInput {
-  ukey: Int!
+  ukey: Int
   start_at: Date!
   stop_at: Date
   sync_ukey: Int
-  preventive_maintenance_ukey: Int!
-  reason_ukey: Int!
-  resource_ukey: Int!
-  shift_ukey: Int!
+  preventive_maintenance_ukey: Int
+  reason_ukey: Int
+  resource_ukey: Int
+  shift_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -881,7 +881,7 @@ type ResourceType {
 }
 
 input ResourceTypeInput {
-  ukey: Int!
+  ukey: Int
   name: String
   sync_ukey: Int
   created_at: Date
@@ -909,11 +909,11 @@ type Sector {
 }
 
 input SectorInput {
-  ukey: Int!
+  ukey: Int
   code: String
   name: String
   sync_ukey: Int
-  company_ukey: Int!
+  company_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -942,7 +942,7 @@ type Shift {
 }
 
 input ShiftInput {
-  ukey: Int!
+  ukey: Int
   name: String
   sync_ukey: Int
   created_at: Date
@@ -969,7 +969,7 @@ type Unit {
 }
 
 input UnitInput {
-  ukey: Int!
+  ukey: Int
   initials: String
   description: String
   sync_ukey: Int
@@ -999,13 +999,13 @@ type User {
 }
 
 input UserInput {
-  ukey: Int!
+  ukey: Int
   name: String
   email: String
   login: String
   password: String
   sync_ukey: Int
-  company_ukey: Int!
+  company_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -1046,7 +1046,7 @@ type WorkCenter {
 }
 
 input WorkCenterInput {
-  ukey: Int!
+  ukey: Int
   name: String
   goal_availability: Float
   goal_energy: Float
@@ -1062,8 +1062,8 @@ input WorkCenterInput {
   standard_energy: Float
   standard_speed: Float
   sync_ukey: Int
-  calendar_ukey: Int!
-  sector_ukey: Int!
+  calendar_ukey: Int
+  sector_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -1091,13 +1091,13 @@ type WorkShift {
 }
 
 input WorkShiftInput {
-  ukey: Int!
+  ukey: Int
   day_week: Int!
   day_start_minutes: Int!
   day_end_minutes: Int!
   sync_ukey: Int
-  calendar_ukey: Int!
-  shift_ukey: Int!
+  calendar_ukey: Int
+  shift_ukey: Int
   created_at: Date
   updated_at: Date
   updated_by: String

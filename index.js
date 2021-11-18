@@ -45,6 +45,7 @@ result = result.replace(modelNameRegex, (match, capture) => {
 const modelLineRegex = /model(.|\s)*?}/gm;
 let models = result.match(modelLineRegex);
 
+// type
 models = models.map((model) => {
   let newModel = model.replace('model', 'type');
   let modelLines = newModel.split('\n');
@@ -69,6 +70,7 @@ models = models.map((model) => {
     return joined;
   })
 
+  // input
   newModelInput = modelLines.map(line => {
     if (line.match(/({|})/g)) {
       let newLine = line.split(' ');
@@ -83,7 +85,7 @@ models = models.map((model) => {
     let joined = '  '.concat(fields.join(': '));
 
     if (!validTypes.some(v => joined.includes(v))) return;
-
+    
     joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
     
     if (!validTypes.some(v => joined.includes(v))) {
@@ -94,6 +96,10 @@ models = models.map((model) => {
         return `[${capture}]`;
       })
     };
+    if (joined.includes('ukey')) {
+      joined = joined.replace('!', '');
+    }
+
     joined = joined.replace('DateTime', 'Date');
     return joined;
   })
