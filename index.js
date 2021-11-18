@@ -54,10 +54,17 @@ models = models.map((model) => {
 
     fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
     let joined = '  '.concat(fields.join(': '));
-
-    if (!validTypes.some(v => joined.includes(v))) return;
-
+    
     joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+
+    if (!validTypes.some(v => joined.includes(v))) {
+      // model fields
+      joined = joined.replace('!', '');
+      relationModelRegex = /(\w+)\[\]/g
+      joined = joined.replace(relationModelRegex, (match, capture) => {
+        return `[${capture}]`;
+      })
+    };
     joined = joined.replace('DateTime', 'Date');
     return joined;
   })
@@ -78,6 +85,15 @@ models = models.map((model) => {
     if (!validTypes.some(v => joined.includes(v))) return;
 
     joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+    
+    if (!validTypes.some(v => joined.includes(v))) {
+      // model fields
+      joined = joined.replace('!', '');
+      relationModelRegex = /(\w+)\[\]/g
+      joined = joined.replace(relationModelRegex, (match, capture) => {
+        return `[${capture}]`;
+      })
+    };
     joined = joined.replace('DateTime', 'Date');
     return joined;
   })

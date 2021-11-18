@@ -27,7 +27,9 @@ type BiHour {
   duration: Int
   sync_ukey: Int
   resource_ukey: Int!
+  resource: Resource
   shift_ukey: Int!
+  shift: Shift
   datetime: Date
   previous_datetime: Date
   created_at: Date
@@ -37,6 +39,7 @@ type BiHour {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input BiHourInput {
   ukey: Int!
   resource_name: String
@@ -106,7 +109,9 @@ type BiMaintence {
   duration: Int
   sync_ukey: Int
   resource_ukey: Int!
+  resource: Resource
   shift_ukey: Int!
+  shift: Shift
   datetime: Date
   previous_datetime: Date
   created_at: Date!
@@ -116,6 +121,7 @@ type BiMaintence {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input BiMaintenceInput {
   ukey: Int!
   resource_name: String
@@ -185,7 +191,9 @@ type BiShift {
   duration: Int
   sync_ukey: Int
   resource_ukey: Int!
+  resource: Resource
   shift_ukey: Int!
+  shift: Shift
   datetime: Date
   previous_datetime: Date
   created_at: Date!
@@ -195,6 +203,7 @@ type BiShift {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input BiShiftInput {
   ukey: Int!
   resource_name: String
@@ -241,6 +250,11 @@ type Calendar {
   start_at: Date
   stop_at: Date
   sync_ukey: Int
+  monitored_resource: [MonitoredResource]
+  no_work_shift: [NoWorkShift]
+  resource: [Resource]
+  work_center: [WorkCenter]
+  work_shift: [WorkShift]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -248,6 +262,7 @@ type Calendar {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input CalendarInput {
   ukey: Int!
   name: String
@@ -279,7 +294,11 @@ type Company {
   timezone: Int
   sync_ukey: Int
   company_group_ukey: Int!
+  company_group: CompanyGroup
   currency_ukey: Int!
+  currency: Currency
+  sector: [Sector]
+  user: [User]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -287,6 +306,7 @@ type Company {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input CompanyInput {
   ukey: Int!
   name: String
@@ -317,6 +337,7 @@ type CompanyGroup {
   ukey: Int!
   name: String
   sync_ukey: Int
+  company: [Company]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -324,6 +345,7 @@ type CompanyGroup {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input CompanyGroupInput {
   ukey: Int!
   name: String
@@ -342,6 +364,8 @@ type Currency {
   code: String
   symbol: String
   sync_ukey: Int
+  company: [Company]
+  monitored_resource: [MonitoredResource]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -349,6 +373,7 @@ type Currency {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input CurrencyInput {
   ukey: Int!
   name: String
@@ -384,8 +409,11 @@ type MonitoredResource {
   time_setup: Float
   sync_ukey: Int
   currency_ukey: Int!
+  currency: Currency
   calendar_ukey: Int!
+  calendar: Calendar
   resource_ukey: Int!
+  resource: Resource
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -393,6 +421,7 @@ type MonitoredResource {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input MonitoredResourceInput {
   ukey: Int!
   id_hardware_monitored: String
@@ -430,7 +459,9 @@ type NoWorkShift {
   stop_at: Date!
   sync_ukey: Int
   calendar_ukey: Int!
+  calendar: Calendar
   shift_ukey: Int!
+  shift: Shift
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -438,6 +469,7 @@ type NoWorkShift {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input NoWorkShiftInput {
   ukey: Int!
   start_at: Date!
@@ -458,6 +490,7 @@ type Operations {
   code: String
   description: String
   sync_ukey: Int
+  production_order: [ProductionOrder]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -465,6 +498,7 @@ type Operations {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input OperationsInput {
   ukey: Int!
   code: String
@@ -491,6 +525,7 @@ type Parameters {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ParametersInput {
   ukey: Int!
   type: String
@@ -513,7 +548,10 @@ type PreventiveMaintenance {
   stop_at: Date!
   sync_ukey: Int
   reason_ukey: Int!
+  reason: Reason
   resource_ukey: Int!
+  resource: Resource
+  resource_stop: [ResourceStop]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -521,6 +559,7 @@ type PreventiveMaintenance {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input PreventiveMaintenanceInput {
   ukey: Int!
   stop_reason_description: String
@@ -568,10 +607,16 @@ type ProductionOrder {
   nonconforming_quantity: Float
   sync_ukey: Int
   operation_ukey: Int!
+  operations: Operations
   resource_ukey: Int!
+  resource: Resource
   unity_quantity_ukey: Int!
+  unity_quantity: Unit
   unity_refuse_ukey: Int!
+  unity_quantity_refuse: Unit
   work_center_ukey: Int!
+  work_center: WorkCenter
+  production_order_annotation: [ProductionOrderAnnotation]
   real_start: Date
   real_end: Date
   planned_start: Date!
@@ -583,6 +628,7 @@ type ProductionOrder {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ProductionOrderInput {
   ukey: Int!
   origin: Int
@@ -637,8 +683,11 @@ type ProductionOrderAnnotation {
   status_annotation: Int
   sync_ukey: Int
   production_order_ukey: Int!
+  production_order: ProductionOrder
   resource_ukey: Int!
+  resource: Resource
   shift_ukey: Int!
+  shift: Shift
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -646,6 +695,7 @@ type ProductionOrderAnnotation {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ProductionOrderAnnotationInput {
   ukey: Int!
   quantity: Float
@@ -672,6 +722,8 @@ type Reason {
   is_utilization: Boolean
   is_preventive: Boolean
   sync_ukey: Int
+  preventive_maintenance: [PreventiveMaintenance]
+  resource_stop: [ResourceStop]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -679,6 +731,7 @@ type Reason {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ReasonInput {
   ukey: Int!
   name: String
@@ -705,8 +758,20 @@ type Resource {
   keep_alive: Date
   sync_ukey: Int
   calendar_ukey: Int!
+  calendar: Calendar
   resource_type_ukey: Int!
+  resource_type: ResourceType
   work_center_ukey: Int!
+  work_center: WorkCenter
+  resource_data: [ResourceData]
+  bi_hour: [BiHour]
+  bi_maintence: [BiMaintence]
+  bi_shift: [BiShift]
+  monitored_resource: [MonitoredResource]
+  preventive_maintenance: [PreventiveMaintenance]
+  production_order: [ProductionOrder]
+  production_order_annotation: [ProductionOrderAnnotation]
+  resource_stop: [ResourceStop]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -714,6 +779,7 @@ type Resource {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ResourceInput {
   ukey: Int!
   name: String
@@ -742,11 +808,13 @@ type ResourceData {
   data3: Float
   data4: Float
   resource_ukey: Int!
+  resource: Resource
   captured_datetime: Date!
   created_at: Date
   updated_at: Date
   updated_by: String
 }
+
 input ResourceDataInput {
   ukey: Int!
   data0: Float
@@ -767,9 +835,13 @@ type ResourceStop {
   stop_at: Date
   sync_ukey: Int
   preventive_maintenance_ukey: Int!
+  preventive_maintenance: PreventiveMaintenance
   reason_ukey: Int!
+  reason: Reason
   resource_ukey: Int!
+  resource: Resource
   shift_ukey: Int!
+  shift: Shift
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -777,6 +849,7 @@ type ResourceStop {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ResourceStopInput {
   ukey: Int!
   start_at: Date!
@@ -798,6 +871,7 @@ type ResourceType {
   ukey: Int!
   name: String
   sync_ukey: Int
+  resource: [Resource]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -805,6 +879,7 @@ type ResourceType {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ResourceTypeInput {
   ukey: Int!
   name: String
@@ -823,6 +898,8 @@ type Sector {
   name: String
   sync_ukey: Int
   company_ukey: Int!
+  company: Company
+  work_center: [WorkCenter]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -830,6 +907,7 @@ type Sector {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input SectorInput {
   ukey: Int!
   code: String
@@ -848,6 +926,13 @@ type Shift {
   ukey: Int!
   name: String
   sync_ukey: Int
+  bi_hour: [BiHour]
+  bi_maintence: [BiMaintence]
+  bi_shift: [BiShift]
+  no_work_shift: [NoWorkShift]
+  production_order_annotation: [ProductionOrderAnnotation]
+  resource_stop: [ResourceStop]
+  work_shift: [WorkShift]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -855,6 +940,7 @@ type Shift {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input ShiftInput {
   ukey: Int!
   name: String
@@ -872,6 +958,8 @@ type Unit {
   initials: String
   description: String
   sync_ukey: Int
+  production_order_production_order_unity_quantity_ukeyTounit: [ProductionOrder]
+  production_order_production_order_unity_refuse_ukeyTounit: [ProductionOrder]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -879,6 +967,7 @@ type Unit {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input UnitInput {
   ukey: Int!
   initials: String
@@ -900,6 +989,7 @@ type User {
   password: String
   sync_ukey: Int
   company_ukey: Int!
+  company: Company
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -907,6 +997,7 @@ type User {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input UserInput {
   ukey: Int!
   name: String
@@ -941,7 +1032,11 @@ type WorkCenter {
   standard_speed: Float
   sync_ukey: Int
   calendar_ukey: Int!
+  calendar: Calendar
   sector_ukey: Int!
+  sector: Sector
+  production_order: [ProductionOrder]
+  resource: [Resource]
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -949,6 +1044,7 @@ type WorkCenter {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input WorkCenterInput {
   ukey: Int!
   name: String
@@ -983,7 +1079,9 @@ type WorkShift {
   day_end_minutes: Int!
   sync_ukey: Int
   calendar_ukey: Int!
+  calendar: Calendar
   shift_ukey: Int!
+  shift: Shift
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -991,6 +1089,7 @@ type WorkShift {
   need_update: Boolean
   is_deleted: Boolean
 }
+
 input WorkShiftInput {
   ukey: Int!
   day_week: Int!
