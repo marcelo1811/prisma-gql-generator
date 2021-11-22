@@ -45,10 +45,10 @@ result = result.replace(modelNameRegex, (match, capture) => {
 const modelLineRegex = /model(.|\s)*?}/gm;
 let models = result.match(modelLineRegex);
 
-// type
-models = models.map((model) => {
+const gql = models.map((model) => {
   let newModel = model.replace('model', 'type');
   let modelLines = newModel.split('\n');
+  // type
   newModel = modelLines.map(line => {
     if (line.match(/({|})/g)) return line;
     const fields = line.trim().split(/\s+/g);
@@ -87,10 +87,10 @@ models = models.map((model) => {
     if (!validTypes.some(v => joined.includes(v))) return;
     
     joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
+    joined = joined.replace('!', '');
     
     if (!validTypes.some(v => joined.includes(v))) {
       // model fields
-      joined = joined.replace('!', '');
       relationModelRegex = /(\w+)\[\]/g
       joined = joined.replace(relationModelRegex, (match, capture) => {
         return `[${capture}]`;
@@ -110,7 +110,7 @@ models = models.map((model) => {
   ].join('\n\n');
 })
 
-result = models.join('\n\n');
+result = gql.join('\n\n');
 
 fs.writeFileSync(outputFileName, result);
 console.log('Done!');

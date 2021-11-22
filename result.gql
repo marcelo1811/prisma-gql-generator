@@ -154,8 +154,8 @@ input BiMaintenceInput {
   shift_ukey: Int
   datetime: Date
   previous_datetime: Date
-  created_at: Date!
-  updated_at: Date!
+  created_at: Date
+  updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
@@ -236,8 +236,8 @@ input BiShiftInput {
   shift_ukey: Int
   datetime: Date
   previous_datetime: Date
-  created_at: Date!
-  updated_at: Date!
+  created_at: Date
+  updated_at: Date
   updated_by: String
   need_create: Boolean
   need_update: Boolean
@@ -472,8 +472,8 @@ type NoWorkShift {
 
 input NoWorkShiftInput {
   ukey: Int
-  start_at: Date!
-  stop_at: Date!
+  start_at: Date
+  stop_at: Date
   sync_ukey: Int
   calendar_ukey: Int
   shift_ukey: Int
@@ -529,7 +529,7 @@ type Parameters {
 input ParametersInput {
   ukey: Int
   type: String
-  key: String!
+  key: String
   value: String
   sync_ukey: Int
   created_at: Date
@@ -564,8 +564,8 @@ input PreventiveMaintenanceInput {
   ukey: Int
   stop_reason_description: String
   status: Int
-  start_at: Date!
-  stop_at: Date!
+  start_at: Date
+  stop_at: Date
   sync_ukey: Int
   reason_ukey: Int
   resource_ukey: Int
@@ -665,8 +665,8 @@ input ProductionOrderInput {
   work_center_ukey: Int
   real_start: Date
   real_end: Date
-  planned_start: Date!
-  planned_end: Date!
+  planned_start: Date
+  planned_end: Date
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -823,7 +823,7 @@ input ResourceDataInput {
   data3: Float
   data4: Float
   resource_ukey: Int
-  captured_datetime: Date!
+  captured_datetime: Date
   created_at: Date
   updated_at: Date
   updated_by: String
@@ -852,7 +852,7 @@ type ResourceStop {
 
 input ResourceStopInput {
   ukey: Int
-  start_at: Date!
+  start_at: Date
   stop_at: Date
   sync_ukey: Int
   preventive_maintenance_ukey: Int
@@ -1092,9 +1092,9 @@ type WorkShift {
 
 input WorkShiftInput {
   ukey: Int
-  day_week: Int!
-  day_start_minutes: Int!
-  day_end_minutes: Int!
+  day_week: Int
+  day_start_minutes: Int
+  day_end_minutes: Int
   sync_ukey: Int
   calendar_ukey: Int
   shift_ukey: Int
