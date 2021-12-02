@@ -11,5 +11,6 @@ module.exports = {
     DateTime: 'Date',
   },
   fileToRead: 'prisma.schema',
-  outputFileName: 'result.gql',
+  outputGqlFileName: 'typDefs.gql',
+  outputMqttFileName: 'mqtt.js',
 }

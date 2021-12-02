@@ -17,13 +17,6 @@ function generateGQLInputs(modelLines) {
     if (!basicTypes.some(v => newLine.includes(v))) return;
     
     newLine = newLine.replace('?', '');
-    
-    if (!basicTypes.some(v => newLine.includes(v))) {
-      // relationTypes
-      newLine = newLine.replace(relationModelRegex, (_match, capture) => {
-        return `[${capture}]`;
-      });
-    };
 
     newLine = converLineTypes(newLine);
     return newLine;
