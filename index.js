@@ -1,118 +1,28 @@
 const fs = require('fs');
+const { fileToRead, outputFileName } = require('./config');
+const generateModelGQLs = require('./services/generateModelGQLs');
+
+const { 
+  removeSpaceFromBeginOfLines,
+  removePrismaArgsFromLines,
+  transformModelNamesToUpperCamelCase,
+  getAllModelsFromSchema,
+ } = require('./utils');
 
 console.log('Starting...')
-const fileToRead = 'prisma.schema';
-const outputFileName = 'result.gql';
 
-// TODO MARCELO: CORRIGIR LÓGICA E ADICIONAR TIPAGENS DO PRISMA
-const validTypes = [
-  'Int',
-  'String',
-  'Float',
-  'Boolean',
-  'Date',
-  'ID',
-]
+const initialSchema = fs.readFileSync(`${__dirname}/${fileToRead}`, 'utf-8');
 
-let schema
-try {
-  schema = fs.readFileSync(`${__dirname}/${fileToRead}`, 'utf-8');
-} catch (err) {
-  console.log(err);
-}
+schema = removeSpaceFromBeginOfLines(initialSchema);
+schema = removePrismaArgsFromLines(schema);
+schema = transformModelNamesToUpperCamelCase(schema);
 
-let result = schema;
+const models = getAllModelsFromSchema(schema);
 
-const startOfLineSpaceregex = /^\s*/gm;
-result = result.replace(startOfLineSpaceregex, '');
+const gqlOutput = models.map((model) => generateModelGQLs(model))
+                        .join('\n\n');
 
-const columnArgsRegex = /\s*@.*/gm;
-result = result.replace(columnArgsRegex, '');
-
-function transformLowerSneakCaseToUpperCamelCase(string) {
-  const sneakCaseRegex = /(_\w)/gm;
-  const capitalized = string.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-  return capitalized.replace(sneakCaseRegex, (match, capture) => {
-    return match.replace(capture, capture.toUpperCase().replace('_', ''));
-  });
-}
-
-const modelNameRegex = /\s(\w*)\s{/gm;
-result = result.replace(modelNameRegex, (match, capture) => {
-  return transformLowerSneakCaseToUpperCamelCase(match);
-})
-
-const modelLineRegex = /model(.|\s)*?}/gm;
-let models = result.match(modelLineRegex);
-
-const gql = models.map((model) => {
-  let newModel = model.replace('model', 'type');
-  let modelLines = newModel.split('\n');
-  // type
-  newModel = modelLines.map(line => {
-    if (line.match(/({|})/g)) return line;
-    const fields = line.trim().split(/\s+/g);
-
-    fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
-    let joined = '  '.concat(fields.join(': '));
-    
-    joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
-
-    if (!validTypes.some(v => joined.includes(v))) {
-      // model fields
-      joined = joined.replace('!', '');
-      relationModelRegex = /(\w+)\[\]/g
-      joined = joined.replace(relationModelRegex, (match, capture) => {
-        return `[${capture}]`;
-      })
-    };
-    joined = joined.replace('DateTime', 'Date');
-    return joined;
-  })
-
-  // input
-  newModelInput = modelLines.map(line => {
-    if (line.match(/({|})/g)) {
-      let newLine = line.split(' ');
-      if (newLine.length !== 3) return line;
-      newLine[0] = 'input'
-      newLine[1] = newLine[1] + 'Input'
-      return newLine.join(' ');
-  };
-    const fields = line.trim().split(/\s+/g);
-
-    fields[1] = transformLowerSneakCaseToUpperCamelCase(fields[1])
-    let joined = '  '.concat(fields.join(': '));
-
-    if (!validTypes.some(v => joined.includes(v))) return;
-    
-    joined = joined.includes('?') ? joined.replace('?', '') : joined.concat('!');
-    joined = joined.replace('!', '');
-    
-    if (!validTypes.some(v => joined.includes(v))) {
-      // model fields
-      relationModelRegex = /(\w+)\[\]/g
-      joined = joined.replace(relationModelRegex, (match, capture) => {
-        return `[${capture}]`;
-      })
-    };
-    if (joined.includes('ukey')) {
-      joined = joined.replace('!', '');
-    }
-
-    joined = joined.replace('DateTime', 'Date');
-    return joined;
-  })
-
-  return [
-    newModel.filter(line => line).join('\n'),
-    newModelInput.filter(line => line).join('\n')
-  ].join('\n\n');
-})
-
-result = gql.join('\n\n');
-
-fs.writeFileSync(outputFileName, result);
+fs.writeFileSync(outputFileName, gqlOutput);
 console.log('Done!');
 
 

@@ -37,6 +37,7 @@ type BiHour {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -77,6 +78,7 @@ input BiHourInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -119,6 +121,7 @@ type BiMaintence {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -159,6 +162,7 @@ input BiMaintenceInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -201,6 +205,7 @@ type BiShift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -241,6 +246,7 @@ input BiShiftInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -260,6 +266,7 @@ type Calendar {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -274,6 +281,7 @@ input CalendarInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -304,6 +312,7 @@ type Company {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -330,6 +339,7 @@ input CompanyInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -343,6 +353,7 @@ type CompanyGroup {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -355,6 +366,7 @@ input CompanyGroupInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -371,6 +383,7 @@ type Currency {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -385,6 +398,7 @@ input CurrencyInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -419,6 +433,7 @@ type MonitoredResource {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -450,6 +465,7 @@ input MonitoredResourceInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -467,6 +483,7 @@ type NoWorkShift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -482,6 +499,7 @@ input NoWorkShiftInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -496,6 +514,7 @@ type Operations {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -509,6 +528,7 @@ input OperationsInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -523,6 +543,7 @@ type Parameters {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -537,6 +558,7 @@ input ParametersInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -557,6 +579,7 @@ type PreventiveMaintenance {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -574,6 +597,7 @@ input PreventiveMaintenanceInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -626,6 +650,7 @@ type ProductionOrder {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -672,6 +697,7 @@ input ProductionOrderInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -693,6 +719,7 @@ type ProductionOrderAnnotation {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -711,6 +738,7 @@ input ProductionOrderAnnotationInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -729,6 +757,7 @@ type Reason {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -745,6 +774,7 @@ input ReasonInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -777,6 +807,7 @@ type Resource {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -797,6 +828,7 @@ input ResourceInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -834,9 +866,9 @@ type ResourceStop {
   start_at: Date!
   stop_at: Date
   sync_ukey: Int
-  preventive_maintenance_ukey: Int!
+  preventive_maintenance_ukey: Int
   preventive_maintenance: PreventiveMaintenance
-  reason_ukey: Int!
+  reason_ukey: Int
   reason: Reason
   resource_ukey: Int!
   resource: Resource
@@ -847,6 +879,7 @@ type ResourceStop {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -864,6 +897,7 @@ input ResourceStopInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -877,6 +911,7 @@ type ResourceType {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -889,6 +924,7 @@ input ResourceTypeInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -905,6 +941,7 @@ type Sector {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -919,6 +956,7 @@ input SectorInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -938,6 +976,7 @@ type Shift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -950,6 +989,7 @@ input ShiftInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -965,6 +1005,7 @@ type Unit {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -978,6 +1019,7 @@ input UnitInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -995,6 +1037,7 @@ type User {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -1011,6 +1054,7 @@ input UserInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -1042,6 +1086,7 @@ type WorkCenter {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
@@ -1069,14 +1114,15 @@ input WorkCenterInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
 type WorkShift {
   ukey: Int!
   day_week: Int!
-  day_start_minutes: Int!
-  day_end_minutes: Int!
+  start_time: Date!
+  end_time: Date!
   sync_ukey: Int
   calendar_ukey: Int!
   calendar: Calendar
@@ -1087,14 +1133,15 @@ type WorkShift {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
 
 input WorkShiftInput {
   ukey: Int
   day_week: Int
-  day_start_minutes: Int
-  day_end_minutes: Int
+  start_time: Date
+  end_time: Date
   sync_ukey: Int
   calendar_ukey: Int
   shift_ukey: Int
@@ -1103,5 +1150,6 @@ input WorkShiftInput {
   updated_by: String
   need_create: Boolean
   need_update: Boolean
+  need_delete: Boolean
   is_deleted: Boolean
 }
