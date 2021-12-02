@@ -1,9 +1,7 @@
 const fs = require('fs');
 const { fileToRead, outputGqlFileName, outputMqttFileName } = require('./config');
-const generateModelGQLs = require('./services/generateModelGQLs');
-const generateMQTTFields = require('./services/generateMQTTFields');
-const generateMQTTInputData = require('./services/generateMQTTInputData');
-const generateMQTTInputVariables = require('./services/generateMQTTInputVariables');
+const generateOutputGQL = require('./services/generateOutputGQL');
+const generateOutputMQTT = require('./services/generateOutputMQTT');
 
 const { 
   removeSpaceFromBeginOfLines,
@@ -22,20 +20,13 @@ schema = transformModelNamesToUpperCamelCase(schema);
 
 const models = getAllModelsFromSchema(schema);
 
-const gqlOutput = models.map((model) => generateModelGQLs(model))
+const gqlOutput = models.map((model) => generateOutputGQL(model))
+                        .join('\n\n');
+const mqttOutput = models.map((model) => generateOutputMQTT(model))
                         .join('\n\n');
 
-const mqttInputData = models.map((model) => generateMQTTInputData(model))
-                         .join('\n\n');
-const mqttInputVariables = models.map((model) => generateMQTTInputVariables(model))
-                         .join('\n\n');
-const mqttFields = models.map((model) => generateMQTTFields(model))
-                         .join('\n\n');
-
-const mqttOutput = [mqttInputData, mqttInputVariables, mqttFields].join('\n\n');
-
-fs.writeFileSync(outputGqlFileName, gqlOutput);
-fs.writeFileSync(outputMqttFileName, mqttOutput);
+fs.writeFileSync(`outputs/${outputGqlFileName}`, gqlOutput);
+fs.writeFileSync(`outputs/${outputMqttFileName}`, mqttOutput);
 console.log('Done!');
 
 

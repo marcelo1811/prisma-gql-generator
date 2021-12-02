@@ -1,8 +1,8 @@
 const { basicTypes } = require("../config");
-const { relationModelRegex, isColumnLine, transformLowerSneakCaseToUpperCamelCase, converLineTypes, getColumnTypeFromLine } = require("./../utils");
+const { relationModelRegex, isColumnLine, transformLowerSneakCaseToUpperCamelCase, converLineTypes, getColumnTypeFromLine, formatResult } = require("./../utils");
 
 function generateGQLTypes(modelLines) {
-  return modelLines.map(line => {
+  const result = modelLines.map(line => {
     if (!isColumnLine(line)) return line;
     let { columnName, columnType } = getColumnTypeFromLine(line);
     let newLine = `  ${columnName}: ${transformLowerSneakCaseToUpperCamelCase(columnType)}`;
@@ -19,6 +19,8 @@ function generateGQLTypes(modelLines) {
     newLine = converLineTypes(newLine);
     return newLine;
   })
+
+  return formatResult(result);
 }
 
 module.exports = generateGQLTypes;

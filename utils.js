@@ -50,7 +50,17 @@ function converLineTypes(line) {
   return newLine;
 }
 
+function formatResult(result) {
+  return result.filter(line => line).join('\n');
+}
+
+function downcaseFirstLetter(string) {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}
+
 const relationModelRegex = /(\w+)\[\]/g
+
+const modelRowRegex = /model\s(\w+)\s{/g;
 
 module.exports = {
     transformLowerSneakCaseToUpperCamelCase: (string) => transformLowerSneakCaseToUpperCamelCase(string),
@@ -61,5 +71,8 @@ module.exports = {
     isColumnLine: (line) => isColumnLine(line),
     getColumnTypeFromLine: (line) => getColumnTypeFromLine(line),
     converLineTypes: (line) => converLineTypes(line),
+    formatResult: (result) => formatResult(result),
+    downcaseFirstLetter: (string) => downcaseFirstLetter(string),
     relationModelRegex: relationModelRegex,
+    modelRowRegex: modelRowRegex,
 }

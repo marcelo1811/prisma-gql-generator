@@ -1,7 +1,7 @@
 const generateGQLInputs = require("./generateGQLInputs");
 const generateGQLTypes = require("./generateGQLTypes");
 
-function generateModelGQLs(model) {
+function generateOutputGQL(model) {
   let modelTypeDef = model.replace('model', 'type');
   let modelLines = modelTypeDef.split('\n');
   
@@ -12,9 +12,9 @@ function generateModelGQLs(model) {
   modelInputDef = generateGQLInputs(modelLines);
   
   return [
-    modelTypeDef.filter(line => line).join('\n'),
-    modelInputDef.filter(line => line).join('\n')
+    modelTypeDef,
+    modelInputDef
   ].join('\n\n');
 }
 
-module.exports = generateModelGQLs;
+module.exports = generateOutputGQL;
