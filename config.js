@@ -22,7 +22,15 @@ module.exports = {
   },
   prismaSchemaFile: 'prisma.schema',
   outputGqlFileName: 'typDefs.gql',
-  outputMqttFileName: 'mqtt.js',
+  outputMqttFileName: 'variables.js',
   outputMockedData: 'mockedData.js',
   exportPrefix: 'exports.',
+  outputGqlPaths: [
+    // '/Users/marcelomiyachi/code/gti-it/furukawa3/edge-infra/edge-backend/src/graphql',
+    // '/Users/marcelomiyachi/code/gti-it/furukawa3/cloud-infra/cloud-backend/src/graphql',
+  ],
+  outputMqttPaths: [
+    // '/Users/marcelomiyachi/code/gti-it/furukawa3/edge-infra/mqtt_edge/src/utils',
+    // '/Users/marcelomiyachi/code/gti-it/furukawa3/cloud-infra/mqtt_cloud/src/utils',
+  ],
 }
