@@ -30,7 +30,7 @@ module.exports = {
     // '/Users/marcelomiyachi/code/gti-it/furukawa3/cloud-infra/cloud-backend/src/graphql',
   ],
   outputMqttPaths: [
-    // '/Users/marcelomiyachi/code/gti-it/furukawa3/edge-infra/mqtt_edge/src/utils',
+    '/Users/marcelomiyachi/code/gti-it/furukawa3/edge-infra/mqtt_edge/src/utils',
     // '/Users/marcelomiyachi/code/gti-it/furukawa3/cloud-infra/mqtt_cloud/src/utils',
   ],
 }

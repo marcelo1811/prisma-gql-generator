@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/marcelo1811/prisma-gql-generator#readme",
   "dependencies": {
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "inquirer": "^8.2.0"
   }
 }
