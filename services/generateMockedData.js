@@ -1,9 +1,9 @@
-const { basicTypes } = require("../config");
+const { basicTypes, mockedValues } = require("../config");
 const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
 
-function generateMQTTFields(model) {
+function generateMockedData(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `exports.${downcaseFirstLetter(capture)}Fields = {`;
+    return `exports.${downcaseFirstLetter(capture)}ExampleData = {`;
   })
   let modelLines = newModel.split('\n');
   
@@ -15,14 +15,14 @@ function generateMQTTFields(model) {
     
     if (!basicTypes.some(v => v === columnType)) return;
 
-    let newLine = `  ${columnName}`;
+    let newLine = `  ${columnName}: ${mockedValues[columnType]},`;
     newLine = newLine.replace('?', '');
     newLine = converLineTypes(newLine);
-    
+
     return newLine;
   });
 
   return formatResult(result);
 }
 
-module.exports = generateMQTTFields;
+module.exports = generateMockedData;

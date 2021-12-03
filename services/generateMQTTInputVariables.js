@@ -3,7 +3,7 @@ const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamel
 
 function generateMQTTInputVariables(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `module.exports = ${downcaseFirstLetter(capture)}InputVariables = {`;
+    return `exports.${downcaseFirstLetter(capture)}InputVariables = {`;
   })
   let modelLines = newModel.split('\n');
   
@@ -11,13 +11,14 @@ function generateMQTTInputVariables(model) {
     if (!isColumnLine(line)) return line.replace(/(\{|\})/, '`');
     
     let { columnName, columnType } = getColumnTypeFromLine(line);
-    let newLine = `  $${columnName}: ${transformLowerSneakCaseToUpperCamelCase(columnType)}`;
-
-    if (!basicTypes.some(v => newLine.includes(v))) return;
+    columnType = columnType.replace('?', '');
     
-    newLine = newLine.replace('?', '');
+    if (!basicTypes.some(v => v === columnType)) return;
 
+    let newLine = `  $${columnName}: ${transformLowerSneakCaseToUpperCamelCase(columnType)}`;
+    newLine = newLine.replace('?', '');
     newLine = converLineTypes(newLine);
+
     return newLine;
   });
 
