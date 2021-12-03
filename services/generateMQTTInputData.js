@@ -3,7 +3,7 @@ const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamel
 
 function generateMQTTInputVariables(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `export const ${downcaseFirstLetter(capture)}Data = {`;
+    return `module.exports = ${downcaseFirstLetter(capture)}Data = {`;
   })
   let modelLines = newModel.split('\n');
   

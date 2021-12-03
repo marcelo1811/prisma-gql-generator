@@ -3,7 +3,7 @@ const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamel
 
 function generateMQTTFields(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `export const ${downcaseFirstLetter(capture)}Fields = {`;
+    return `module.exports = ${downcaseFirstLetter(capture)}Fields = {`;
   })
   let modelLines = newModel.split('\n');
   
