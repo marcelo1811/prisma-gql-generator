@@ -20,8 +20,9 @@ module.exports = {
     'ID': 1,
     'DateTime': `"${new Date().toISOString()}"`,    
   },
-  fileToRead: 'prisma.schema',
+  prismaSchemaFile: 'prisma.schema',
   outputGqlFileName: 'typDefs.gql',
   outputMqttFileName: 'mqtt.js',
   outputMockedData: 'mockedData.js',
+  exportPrefix: 'exports.',
 }

@@ -1,9 +1,9 @@
-const { basicTypes, mockedValues } = require("../config");
+const { basicTypes, mockedValues, exportPrefix } = require("../config");
 const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
 
 function generateMockedData(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `exports.${downcaseFirstLetter(capture)}ExampleData = {`;
+    return `${exportPrefix}${downcaseFirstLetter(capture)}ExampleData = {`;
   })
   let modelLines = newModel.split('\n');
   

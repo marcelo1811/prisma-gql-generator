@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { fileToRead, outputGqlFileName, outputMqttFileName, outputMockedData } = require('./config');
+const { prismaSchemaFile, outputGqlFileName, outputMqttFileName, outputMockedData } = require('./config');
 const generateMockedData = require('./services/generateMockedData');
 const generateOutputGQL = require('./services/generateOutputGQL');
 const generateOutputMQTT = require('./services/generateOutputMQTT');
@@ -13,7 +13,7 @@ const {
 
 console.log('Starting...')
 
-const initialSchema = fs.readFileSync(`${__dirname}/${fileToRead}`, 'utf-8');
+const initialSchema = fs.readFileSync(`${__dirname}/${prismaSchemaFile}`, 'utf-8');
 
 schema = removeSpaceFromBeginOfLines(initialSchema);
 schema = removePrismaArgsFromLines(schema);

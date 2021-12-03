@@ -1,9 +1,9 @@
-const { basicTypes } = require("../config");
+const { basicTypes, exportPrefix } = require("../config");
 const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
 
 function generateMQTTInputVariables(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `exports.${downcaseFirstLetter(capture)}InputVariables = {`;
+    return `${exportPrefix}${downcaseFirstLetter(capture)}InputVariables = {`;
   })
   let modelLines = newModel.split('\n');
   

@@ -1,9 +1,9 @@
-const { basicTypes } = require("../config");
+const { basicTypes, exportPrefix } = require("../config");
 const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
 
 function generateMQTTFields(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `exports.${downcaseFirstLetter(capture)}Fields = {`;
+    return `${exportPrefix}${downcaseFirstLetter(capture)}Fields = {`;
   })
   let modelLines = newModel.split('\n');
   
@@ -18,7 +18,7 @@ function generateMQTTFields(model) {
     let newLine = `  ${columnName}`;
     newLine = newLine.replace('?', '');
     newLine = converLineTypes(newLine);
-    
+
     return newLine;
   });
 
