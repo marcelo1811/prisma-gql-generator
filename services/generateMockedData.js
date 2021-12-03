@@ -1,5 +1,5 @@
 const { basicTypes, mockedValues, exportPrefix } = require("../config");
-const { isColumnLine, getColumnTypeFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
+const { isColumnLine, getColumnInfosFromLine, transformLowerSneakCaseToUpperCamelCase, relationModelRegex, converLineTypes, formatResult, modelRowRegex, downcaseFirstLetter } = require("../utils");
 
 function generateMockedData(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
@@ -10,10 +10,10 @@ function generateMockedData(model) {
   const result = modelLines.map(line => {
     if (!isColumnLine(line)) return line.replace(/(\{|\})/, '`');
     
-    let { columnName, columnType } = getColumnTypeFromLine(line);
+    let { columnName, columnType, isBasicType } = getColumnInfosFromLine(line);
     columnType = columnType.replace('?', '');
     
-    if (!basicTypes.some(v => v === columnType)) return;
+    if (!isBasicType) return;
 
     let newLine = `  ${columnName}: ${mockedValues[columnType]},`;
     newLine = newLine.replace('?', '');

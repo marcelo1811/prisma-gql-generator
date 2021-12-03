@@ -1,4 +1,4 @@
-const { transformValues } = require("./config");
+const { transformValues, basicTypes } = require("./config");
 
 function transformLowerSneakCaseToUpperCamelCase(string) {
   const sneakCaseRegex = /(_\w)/gm;
@@ -35,9 +35,10 @@ function isColumnLine(line) {
   return !line.match(/({|})/g)
 }
 
-function getColumnTypeFromLine(line) {
+function getColumnInfosFromLine(line) {
   const [columnName, columnType] = line.trim().split(/\s+/g);
-  return { columnName, columnType };
+  const isBasicType = basicTypes.some(v => v === columnType.replace('?', ''));
+  return { columnName, columnType, isBasicType };
 }
 
 function converLineTypes(line) {
@@ -69,7 +70,7 @@ module.exports = {
     transformModelNamesToUpperCamelCase: (string) => transformModelNamesToUpperCamelCase(string),
     getAllModelsFromSchema: (string) => getAllModelsFromSchema(string),
     isColumnLine: (line) => isColumnLine(line),
-    getColumnTypeFromLine: (line) => getColumnTypeFromLine(line),
+    getColumnInfosFromLine: (line) => getColumnInfosFromLine(line),
     converLineTypes: (line) => converLineTypes(line),
     formatResult: (result) => formatResult(result),
     downcaseFirstLetter: (string) => downcaseFirstLetter(string),
