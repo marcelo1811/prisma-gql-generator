@@ -23,8 +23,11 @@ schema = transformModelNamesToUpperCamelCase(schema);
 
 const models = getAllModelsFromSchema(schema);
 
-const gqlOutput = models.map((model) => generateOutputGQL(model))
-                        .join('\n\n');
+const gqlOutput = [
+                    ...models.map((model) => generateOutputGQL(model)),
+                    'scalar Date',
+                  ].join('\n\n');
+
 const mqttOutput = models.map((model) => generateOutputMQTT(model))
                         .join('\n\n');
 const mockedData = models.map((model) => generateMockedData(model))

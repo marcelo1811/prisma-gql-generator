@@ -3,7 +3,7 @@ const { isColumnLine, getColumnInfosFromLine, transformLowerSneakCaseToUpperCame
 
 function generateMockedData(model) {
   let newModel = model.replace(modelRowRegex, (match, capture) => {
-    return `${exportPrefix}${downcaseFirstLetter(capture)}ExampleData = {`;
+    return `${exportPrefix}${downcaseFirstLetter(capture)}MockedData = {`;
   })
   let modelLines = newModel.split('\n');
   

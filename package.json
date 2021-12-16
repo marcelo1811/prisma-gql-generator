@@ -4,7 +4,8 @@
   "description": "Generate gql files from prisma schema",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node index.js && graphql-codegen"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/marcelo1811/prisma-gql-generator#readme",
   "dependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.1",
     "glob": "^7.2.0",
+    "graphql": "^16.1.0",
     "inquirer": "^8.2.0"
   }
 }
