@@ -15,8 +15,8 @@ function generateGQLTypes(modelLines) {
       newLine = newLine.replace(relationModelRegex, (_match, capture) => {
         return `[${capture}]`;
       });
-      newLine = newLine.replace(']!', ']');
     };
+    newLine = newLine.replace(']!', ']');
     newLine = converLineTypes(newLine);
     return newLine;
   })
