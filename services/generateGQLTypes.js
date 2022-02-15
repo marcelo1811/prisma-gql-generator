@@ -12,10 +12,10 @@ function generateGQLTypes(modelLines) {
     if (!basicTypes.some(v => newLine.includes(v))) {
       // relationTypes
       newLine = newLine.replace('!', '');
-      newLine = newLine.replace(relationModelRegex, (_match, capture) => {
-        return `[${capture}]`;
-      });
     };
+    newLine = newLine.replace(relationModelRegex, (_match, capture) => {
+      return `[${capture}]`;
+    });
     newLine = newLine.replace(']!', ']');
     newLine = converLineTypes(newLine);
     return newLine;
